@@ -3,12 +3,18 @@ import { useProfile } from './ProfileContext';
 import { subscribeActivities } from '../../lib/repos/activities.repo';
 import { subscribeCompletions } from '../../lib/repos/completions.repo';
 import { subscribeLedger } from '../../lib/repos/ledger.repo';
-import { Activity, Completion, LedgerEntry } from '../../lib/types';
+import { subscribeRewards } from '../../lib/repos/rewards.repo';
+import { subscribeRedemptions } from '../../lib/repos/redemptions.repo';
+import { subscribeNegotiations } from '../../lib/repos/negotiations.repo';
+import { Activity, Completion, LedgerEntry, Reward, RedemptionRecord, NegotiationThread } from '../../lib/types';
 
 interface DataContextType {
   activities: Activity[];
   completions: Completion[];
   ledger: LedgerEntry[];
+  rewards: Reward[];
+  redemptions: RedemptionRecord[];
+  negotiations: NegotiationThread[];
   loading: boolean;
 }
 
@@ -19,6 +25,9 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [activities, setActivities] = useState<Activity[]>([]);
   const [completions, setCompletions] = useState<Completion[]>([]);
   const [ledger, setLedger] = useState<LedgerEntry[]>([]);
+  const [rewards, setRewards] = useState<Reward[]>([]);
+  const [redemptions, setRedemptions] = useState<RedemptionRecord[]>([]);
+  const [negotiations, setNegotiations] = useState<NegotiationThread[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -26,6 +35,9 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setActivities([]);
       setCompletions([]);
       setLedger([]);
+      setRewards([]);
+      setRedemptions([]);
+      setNegotiations([]);
       setLoading(false);
       return;
     }
@@ -34,14 +46,27 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     let unsubActivities: (() => void) | undefined;
     let unsubCompletions: (() => void) | undefined;
     let unsubLedger: (() => void) | undefined;
+    let unsubRewards: (() => void) | undefined;
+    let unsubRedemptions: (() => void) | undefined;
+    let unsubNegotiations: (() => void) | undefined;
 
     let activitiesLoaded = false;
     let completionsLoaded = false;
     let ledgerLoaded = false;
+    let rewardsLoaded = false;
+    let redemptionsLoaded = false;
+    let negotiationsLoaded = false;
 
     const checkLoaded = () => {
       const isParent = currentProfile.role === 'parent';
-      if (activitiesLoaded && completionsLoaded && (isParent || ledgerLoaded)) {
+      if (
+        activitiesLoaded &&
+        completionsLoaded &&
+        rewardsLoaded &&
+        redemptionsLoaded &&
+        negotiationsLoaded &&
+        (isParent || ledgerLoaded)
+      ) {
         setLoading(false);
       }
     };
@@ -74,10 +99,35 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
       checkLoaded();
     }
 
+    // 4. Subscribe to Rewards
+    unsubRewards = subscribeRewards(familyId, (rews) => {
+      setRewards(rews);
+      rewardsLoaded = true;
+      checkLoaded();
+    });
+
+    // 5. Subscribe to Redemptions
+    const redOpts = currentProfile.role === 'parent' ? {} : { kidId: currentProfile.id };
+    unsubRedemptions = subscribeRedemptions(familyId, redOpts, (reds) => {
+      setRedemptions(reds);
+      redemptionsLoaded = true;
+      checkLoaded();
+    });
+
+    // 6. Subscribe to Negotiations
+    unsubNegotiations = subscribeNegotiations(familyId, {}, (negs) => {
+      setNegotiations(negs);
+      negotiationsLoaded = true;
+      checkLoaded();
+    });
+
     return () => {
       if (unsubActivities) unsubActivities();
       if (unsubCompletions) unsubCompletions();
       if (unsubLedger) unsubLedger();
+      if (unsubRewards) unsubRewards();
+      if (unsubRedemptions) unsubRedemptions();
+      if (unsubNegotiations) unsubNegotiations();
     };
   }, [familyId, currentProfile]);
 
@@ -87,6 +137,9 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
         activities,
         completions,
         ledger,
+        rewards,
+        redemptions,
+        negotiations,
         loading,
       }}
     >

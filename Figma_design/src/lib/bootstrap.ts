@@ -1,6 +1,6 @@
 import { doc, setDoc, collection } from 'firebase/firestore';
 import { db } from './firebase';
-import { familyDoc, profileDoc, activityDoc } from './paths';
+import { familyDoc, profileDoc, activityDoc, rewardDoc } from './paths';
 import { Profile } from './types';
 import { getStorageItem, setStorageItem } from './repos/localStorageDb';
 
@@ -108,8 +108,51 @@ export async function ensureFamily(): Promise<string> {
         }
       ];
       
+      const defaultRewards = [
+        {
+          id: 'rew_ice_cream',
+          familyId,
+          title: 'Ice Cream Treat',
+          description: 'A delicious double-scoop ice cream with toppings!',
+          tokenCost: 15,
+          forKidIds: [],
+          status: 'active' as const,
+          proposedByProfileId: parentId,
+          createdAt: Date.now(),
+          updatedAt: Date.now()
+        },
+        {
+          id: 'rew_screen_time',
+          familyId,
+          title: 'Extra 30 Min Screen Time',
+          description: '30 additional minutes of gaming or video time.',
+          tokenCost: 25,
+          forKidIds: [],
+          status: 'active' as const,
+          proposedByProfileId: parentId,
+          createdAt: Date.now(),
+          updatedAt: Date.now()
+        },
+        {
+          id: 'rew_lego_set',
+          familyId,
+          title: 'New Lego Set',
+          description: 'A brand new small Lego Creator set.',
+          tokenCost: 0,
+          forKidIds: ['profile_mia'],
+          status: 'proposed' as const,
+          proposedByProfileId: 'profile_mia',
+          createdAt: Date.now(),
+          updatedAt: Date.now()
+        }
+      ];
+
       setStorageItem(`profiles_${familyId}`, [parentProfile, miaProfile, leoProfile]);
       setStorageItem(`activities_${familyId}`, defaultActivities);
+      setStorageItem(`rewards_${familyId}`, defaultRewards);
+      setStorageItem(`redemptions_${familyId}`, []);
+      setStorageItem(`negotiations_${familyId}`, []);
+      setStorageItem(`offers_${familyId}`, []);
       setStorageItem(`completions_${familyId}`, []);
       setStorageItem(`ledger_${familyId}`, []);
       localStorage.setItem('fam_id', familyId);
@@ -218,8 +261,50 @@ export async function ensureFamily(): Promise<string> {
         }
       ];
       
+      const defaultRewards = [
+        {
+          id: 'rew_ice_cream',
+          familyId,
+          title: 'Ice Cream Treat',
+          description: 'A delicious double-scoop ice cream with toppings!',
+          tokenCost: 15,
+          forKidIds: [],
+          status: 'active' as const,
+          proposedByProfileId: parentId,
+          createdAt: Date.now(),
+          updatedAt: Date.now()
+        },
+        {
+          id: 'rew_screen_time',
+          familyId,
+          title: 'Extra 30 Min Screen Time',
+          description: '30 additional minutes of gaming or video time.',
+          tokenCost: 25,
+          forKidIds: [],
+          status: 'active' as const,
+          proposedByProfileId: parentId,
+          createdAt: Date.now(),
+          updatedAt: Date.now()
+        },
+        {
+          id: 'rew_lego_set',
+          familyId,
+          title: 'New Lego Set',
+          description: 'A brand new small Lego Creator set.',
+          tokenCost: 0,
+          forKidIds: ['profile_mia'],
+          status: 'proposed' as const,
+          proposedByProfileId: 'profile_mia',
+          createdAt: Date.now(),
+          updatedAt: Date.now()
+        }
+      ];
+
       for (const act of defaultActivities) {
         await setDoc(activityDoc(familyId, act.id), act);
+      }
+      for (const rew of defaultRewards) {
+        await setDoc(rewardDoc(familyId, rew.id), rew);
       }
       
       localStorage.setItem('fam_id', familyId);

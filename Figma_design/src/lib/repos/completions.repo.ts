@@ -162,6 +162,8 @@ export async function approveCompletion(
   completionId: string,
   reviewerId: string
 ): Promise<void> {
+  const milestones: Record<number, number> = { 3: 3, 7: 7, 14: 15, 30: 30 };
+
   if (useLocalStorage) {
     // 1. Read completions
     const completions = getStorageItem<Completion[]>(`completions_${familyId}`, []);
@@ -184,10 +186,44 @@ export async function approveCompletion(
     }
     const kid = profiles[kidIdx];
 
-    // 4. Calculate new balance
+    // 4. Calculate new balance & streak
     const tokenChange = completion.tokenValueSnapshot;
-    const newBalance = (kid.tokenBalance || 0) + tokenChange;
     const now = Date.now();
+
+    const todayStr = new Date().toLocaleDateString('sv-SE');
+    const yesterdayDate = new Date(now - 86400000);
+    const yesterdayStr = yesterdayDate.toLocaleDateString('sv-SE');
+
+    let currentStreak = kid.currentStreak || 0;
+    let longestStreak = kid.longestStreak || 0;
+    let lastStreakDate = kid.lastStreakDate || '';
+
+    let streakUpdated = false;
+    if (lastStreakDate === todayStr) {
+      // Already completed today, no change
+    } else if (lastStreakDate === yesterdayStr) {
+      currentStreak += 1;
+      streakUpdated = true;
+    } else {
+      currentStreak = 1;
+      streakUpdated = true;
+    }
+
+    if (streakUpdated) {
+      lastStreakDate = todayStr;
+      if (currentStreak > longestStreak) {
+        longestStreak = currentStreak;
+      }
+    }
+
+    let balanceWithActivity = (kid.tokenBalance || 0) + tokenChange;
+    let finalBalance = balanceWithActivity;
+    let bonusGiven = 0;
+
+    if (streakUpdated && milestones[currentStreak]) {
+      bonusGiven = milestones[currentStreak];
+      finalBalance += bonusGiven;
+    }
 
     // 5. Update completion
     completions[compIdx] = {
@@ -198,13 +234,16 @@ export async function approveCompletion(
       settledTokens: tokenChange,
     };
 
-    // 6. Update kid balance
+    // 6. Update kid profile
     profiles[kidIdx] = {
       ...kid,
-      tokenBalance: newBalance,
+      tokenBalance: finalBalance,
+      currentStreak,
+      longestStreak,
+      lastStreakDate,
     };
 
-    // 7. Create ledger entry
+    // 7. Create ledger entries
     const ledger = getStorageItem<LedgerEntry[]>(`ledger_${familyId}`, []);
     const newLedgerId = `ledger_${Math.random().toString(36).substr(2, 9)}`;
     const newEntry: LedgerEntry = {
@@ -214,12 +253,26 @@ export async function approveCompletion(
       delta: tokenChange,
       reason: 'activity_approved',
       relatedCompletionId: completionId,
-      balanceAfter: newBalance,
+      balanceAfter: balanceWithActivity,
       createdAt: now,
     };
     ledger.push(newEntry);
 
-    // Save everything in one transaction-like block
+    if (bonusGiven > 0) {
+      const bonusLedgerId = `ledger_${Math.random().toString(36).substr(2, 9)}`;
+      const bonusEntry: LedgerEntry = {
+        id: bonusLedgerId,
+        familyId,
+        kidId: completion.kidId,
+        delta: bonusGiven,
+        reason: 'streak_bonus',
+        balanceAfter: finalBalance,
+        createdAt: now + 1, // slightly later to sort cleanly
+      };
+      ledger.push(bonusEntry);
+    }
+
+    // Save everything
     setStorageItem(`completions_${familyId}`, completions);
     setStorageItem(`profiles_${familyId}`, profiles);
     setStorageItem(`ledger_${familyId}`, ledger);
@@ -249,11 +302,45 @@ export async function approveCompletion(
     if (!kidSnap.exists()) {
       throw new Error('KID_PROFILE_NOT_FOUND');
     }
-    const kidData = kidSnap.data();
+    const kidData = kidSnap.data() as Profile;
 
     const tokenChange = completion.tokenValueSnapshot;
-    const newBalance = (kidData.tokenBalance || 0) + tokenChange;
     const now = Date.now();
+
+    const todayStr = new Date().toLocaleDateString('sv-SE');
+    const yesterdayDate = new Date(now - 86400000);
+    const yesterdayStr = yesterdayDate.toLocaleDateString('sv-SE');
+
+    let currentStreak = kidData.currentStreak || 0;
+    let longestStreak = kidData.longestStreak || 0;
+    let lastStreakDate = kidData.lastStreakDate || '';
+
+    let streakUpdated = false;
+    if (lastStreakDate === todayStr) {
+      // Already completed today
+    } else if (lastStreakDate === yesterdayStr) {
+      currentStreak += 1;
+      streakUpdated = true;
+    } else {
+      currentStreak = 1;
+      streakUpdated = true;
+    }
+
+    if (streakUpdated) {
+      lastStreakDate = todayStr;
+      if (currentStreak > longestStreak) {
+        longestStreak = currentStreak;
+      }
+    }
+
+    let balanceWithActivity = (kidData.tokenBalance || 0) + tokenChange;
+    let finalBalance = balanceWithActivity;
+    let bonusGiven = 0;
+
+    if (streakUpdated && milestones[currentStreak]) {
+      bonusGiven = milestones[currentStreak];
+      finalBalance += bonusGiven;
+    }
 
     transaction.update(compRef, {
       status: 'approved',
@@ -263,7 +350,10 @@ export async function approveCompletion(
     });
 
     transaction.update(kidRef, {
-      tokenBalance: newBalance,
+      tokenBalance: finalBalance,
+      currentStreak,
+      longestStreak,
+      lastStreakDate,
     });
 
     const ledColRef = ledgerCol(familyId);
@@ -275,9 +365,22 @@ export async function approveCompletion(
       delta: tokenChange,
       reason: 'activity_approved',
       relatedCompletionId: completionId,
-      balanceAfter: newBalance,
+      balanceAfter: balanceWithActivity,
       createdAt: now,
     });
+
+    if (bonusGiven > 0) {
+      const newBonusLedgerRef = doc(ledColRef);
+      transaction.set(newBonusLedgerRef, {
+        id: newBonusLedgerRef.id,
+        familyId,
+        kidId: completion.kidId,
+        delta: bonusGiven,
+        reason: 'streak_bonus',
+        balanceAfter: finalBalance,
+        createdAt: now + 1,
+      });
+    }
   });
 }
 

@@ -27,3 +27,27 @@ export const ledgerCol = (familyId: string) =>
 
 export const ledgerDoc = (familyId: string, entryId: string) => 
   doc(db, 'families', familyId, 'ledger', entryId);
+
+export const rewardsCol = (familyId: string) => 
+  collection(db, 'families', familyId, 'rewards');
+
+export const rewardDoc = (familyId: string, rewardId: string) => 
+  doc(db, 'families', familyId, 'rewards', rewardId);
+
+export const redemptionsCol = (familyId: string) => 
+  collection(db, 'families', familyId, 'redemptions');
+
+export const redemptionDoc = (familyId: string, redemptionId: string) => 
+  doc(db, 'families', familyId, 'redemptions', redemptionId);
+
+export const negotiationsCol = (familyId: string) => 
+  collection(db, 'families', familyId, 'negotiations');
+
+export const negotiationDoc = (familyId: string, threadId: string) => 
+  doc(db, 'families', familyId, 'negotiations', threadId);
+
+export const offersCol = (familyId: string, threadId: string) => 
+  collection(db, 'families', familyId, 'negotiations', threadId, 'offers');
+
+export const offerDoc = (familyId: string, threadId: string, offerId: string) => 
+  doc(db, 'families', familyId, 'negotiations', threadId, 'offers', offerId);

@@ -4,9 +4,10 @@ import { useProfile } from '../../context/ProfileContext';
 import { ActivityCard } from '../../components/ActivityCard';
 import { CompletionStatusBadge } from '../../components/CompletionStatusBadge';
 import { SubmitCompletionDialog } from './SubmitCompletionDialog';
+import { NegotiationLauncher } from './NegotiationLauncher';
 import { EmptyState } from '../../components/EmptyState';
 import { Button } from '../../components/ui/button';
-import { ClipboardList, Check } from 'lucide-react';
+import { ClipboardList, Check, MessageSquare } from 'lucide-react';
 import { Activity } from '../../../lib/types';
 
 export const ActivityList: React.FC = () => {
@@ -14,6 +15,8 @@ export const ActivityList: React.FC = () => {
   const { currentProfile } = useProfile();
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [negDialogOpen, setNegDialogOpen] = useState(false);
+  const [activityToNeg, setActivityToNeg] = useState<Activity | null>(null);
 
   if (!currentProfile) return null;
 
@@ -30,6 +33,11 @@ export const ActivityList: React.FC = () => {
   const handleOpenDialog = (activity: Activity) => {
     setSelectedActivity(activity);
     setDialogOpen(true);
+  };
+
+  const handleOpenNeg = (activity: Activity) => {
+    setActivityToNeg(activity);
+    setNegDialogOpen(true);
   };
 
   if (loading) {
@@ -105,12 +113,31 @@ export const ActivityList: React.FC = () => {
               );
             }
 
+            const actions = (
+              <div className="flex items-center gap-2 w-full">
+                {activity.status !== 'negotiating' && !latestComp && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleOpenNeg(activity)}
+                    className="text-xs font-semibold flex items-center gap-1 cursor-pointer shrink-0"
+                  >
+                    <MessageSquare className="w-3.5 h-3.5" />
+                    Negotiate
+                  </Button>
+                )}
+                <div className="flex-1">
+                  {actionBtn}
+                </div>
+              </div>
+            );
+
             return (
               <ActivityCard
                 key={activity.id}
                 activity={activity}
                 statusBadge={statusBadge}
-                actions={<div className="w-full">{actionBtn}</div>}
+                actions={actions}
               />
             );
           })}
@@ -121,6 +148,18 @@ export const ActivityList: React.FC = () => {
         isOpen={dialogOpen}
         onClose={() => setDialogOpen(false)}
         activity={selectedActivity}
+      />
+
+      <NegotiationLauncher
+        isOpen={negDialogOpen}
+        onClose={() => {
+          setNegDialogOpen(false);
+          setActivityToNeg(null);
+        }}
+        targetType="activity"
+        targetId={activityToNeg?.id || ''}
+        targetTitle={activityToNeg?.title || ''}
+        currentValue={activityToNeg?.tokenValue || 0}
       />
     </div>
   );

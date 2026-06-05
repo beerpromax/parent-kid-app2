@@ -3,7 +3,11 @@ import { useProfile } from '../../context/ProfileContext';
 import { useData } from '../../context/DataContext';
 import { ActivityList } from './ActivityList';
 import { TokenWallet } from './TokenWallet';
-import { Sparkles, LogOut, CheckSquare, Wallet } from 'lucide-react';
+import { Wishlist } from './Wishlist';
+import { MyNegotiations } from './MyNegotiations';
+import { NotificationBadge } from '../../components/NotificationBadge';
+import { StreakBadge } from '../../components/StreakBadge';
+import { Sparkles, LogOut, CheckSquare, Wallet, Gift, MessageSquare } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 import { ProfileBadge } from '../../components/ProfileBadge';
 import { TokenChip } from '../../components/TokenChip';
@@ -13,8 +17,8 @@ import { Completion } from '../../../lib/types';
 
 export const KidHome: React.FC = () => {
   const { currentProfile, clearProfile } = useProfile();
-  const { completions } = useData();
-  const [activeTab, setActiveTab] = useState<'activities' | 'wallet'>('activities');
+  const { completions, negotiations } = useData();
+  const [activeTab, setActiveTab] = useState<'activities' | 'wallet' | 'wishlist' | 'negotiations'>('activities');
   const prevCompletionsRef = useRef<Completion[]>([]);
 
   useEffect(() => {
@@ -36,6 +40,16 @@ export const KidHome: React.FC = () => {
     prevCompletionsRef.current = completions;
   }, [completions, currentProfile]);
 
+  if (!currentProfile) return null;
+
+  // Calculate pending kid negotiation count (awaiting kid's response)
+  const pendingNegotiationsCount = negotiations.filter(
+    (t) =>
+      t.initiatedByProfileId === currentProfile.id &&
+      t.status === 'open' &&
+      t.currentOfferByProfileId !== currentProfile.id
+  ).length;
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -49,6 +63,11 @@ export const KidHome: React.FC = () => {
           <div className="flex items-center gap-4">
             {currentProfile && (
               <>
+                <StreakBadge
+                  currentStreak={currentProfile.currentStreak || 0}
+                  longestStreak={currentProfile.longestStreak || 0}
+                  className="bg-orange-500/10 text-orange-500 text-xs font-bold shrink-0"
+                />
                 <ProfileBadge profile={currentProfile} avatarSize="sm" />
                 <TokenChip amount={currentProfile.tokenBalance} size="sm" />
               </>
@@ -69,10 +88,10 @@ export const KidHome: React.FC = () => {
       {/* Main Container */}
       <main className="max-w-6xl mx-auto px-4 py-8 sm:px-6">
         {/* Navigation Tabs */}
-        <div className="flex border-b border-border mb-8 overflow-x-auto">
+        <div className="flex border-b border-border mb-8 overflow-x-auto gap-1">
           <button
             onClick={() => setActiveTab('activities')}
-            className={`flex items-center gap-2 pb-4 px-4 font-semibold text-sm transition-all border-b border-b-2 whitespace-nowrap cursor-pointer ${
+            className={`flex items-center gap-2 pb-4 px-4 font-semibold text-sm transition-all border-b-2 whitespace-nowrap cursor-pointer ${
               activeTab === 'activities'
                 ? 'border-primary text-primary font-bold'
                 : 'border-transparent text-muted-foreground hover:text-foreground'
@@ -84,7 +103,7 @@ export const KidHome: React.FC = () => {
           
           <button
             onClick={() => setActiveTab('wallet')}
-            className={`flex items-center gap-2 pb-4 px-4 font-semibold text-sm transition-all border-b border-b-2 whitespace-nowrap cursor-pointer ${
+            className={`flex items-center gap-2 pb-4 px-4 font-semibold text-sm transition-all border-b-2 whitespace-nowrap cursor-pointer ${
               activeTab === 'wallet'
                 ? 'border-primary text-primary font-bold'
                 : 'border-transparent text-muted-foreground hover:text-foreground'
@@ -93,12 +112,39 @@ export const KidHome: React.FC = () => {
             <Wallet className="w-4 h-4" />
             My Wallet
           </button>
+
+          <button
+            onClick={() => setActiveTab('wishlist')}
+            className={`flex items-center gap-2 pb-4 px-4 font-semibold text-sm transition-all border-b-2 whitespace-nowrap cursor-pointer ${
+              activeTab === 'wishlist'
+                ? 'border-primary text-primary font-bold'
+                : 'border-transparent text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            <Gift className="w-4 h-4" />
+            Rewards
+          </button>
+
+          <button
+            onClick={() => setActiveTab('negotiations')}
+            className={`flex items-center gap-2 pb-4 px-4 font-semibold text-sm transition-all border-b-2 whitespace-nowrap cursor-pointer relative ${
+              activeTab === 'negotiations'
+                ? 'border-primary text-primary font-bold'
+                : 'border-transparent text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            <MessageSquare className="w-4 h-4" />
+            <span>Negotiations</span>
+            <NotificationBadge count={pendingNegotiationsCount} className="ml-1" />
+          </button>
         </div>
 
         {/* Tab Content */}
         <div className="animate-in fade-in duration-200">
           {activeTab === 'activities' && <ActivityList />}
           {activeTab === 'wallet' && <TokenWallet />}
+          {activeTab === 'wishlist' && <Wishlist />}
+          {activeTab === 'negotiations' && <MyNegotiations />}
         </div>
       </main>
     </div>

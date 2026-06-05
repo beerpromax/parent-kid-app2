@@ -2,18 +2,31 @@ import React, { useState } from 'react';
 import { useProfile } from '../../context/ProfileContext';
 import { ActivityManager } from './ActivityManager';
 import { ApprovalInbox } from './ApprovalInbox';
+import { RewardManager } from './RewardManager';
+import { FulfillmentInbox } from './FulfillmentInbox';
+import { NegotiationInbox } from './NegotiationInbox';
 import { FamilyDashboard } from './FamilyDashboard';
-import { Sparkles, LogOut, CheckSquare, Inbox, Users } from 'lucide-react';
+import { Sparkles, LogOut, CheckSquare, Inbox, Users, Gift, ShoppingBag, MessageSquare } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 import { ProfileBadge } from '../../components/ProfileBadge';
+import { NotificationBadge } from '../../components/NotificationBadge';
 import { useData } from '../../context/DataContext';
 
 export const ParentHome: React.FC = () => {
   const { currentProfile, clearProfile } = useProfile();
-  const { completions } = useData();
-  const [activeTab, setActiveTab] = useState<'activities' | 'approvals' | 'dashboard'>('activities');
+  const { completions, rewards, redemptions, negotiations } = useData();
+  const [activeTab, setActiveTab] = useState<'activities' | 'approvals' | 'rewards' | 'fulfillment' | 'negotiations' | 'dashboard'>('activities');
+
+  if (!currentProfile) return null;
 
   const pendingCount = completions.filter((c) => c.status === 'pending').length;
+  const proposedRewardsCount = rewards.filter((r) => r.status === 'proposed').length;
+  const requestedRedemptionsCount = redemptions.filter((r) => r.status === 'requested').length;
+  
+  // Open negotiations where kid made the last offer (standing offer is not parent's)
+  const pendingNegotiationsCount = negotiations.filter(
+    (t) => t.status === 'open' && t.currentOfferByProfileId !== currentProfile.id
+  ).length;
 
   return (
     <div className="min-h-screen bg-background">
@@ -45,46 +58,81 @@ export const ParentHome: React.FC = () => {
       {/* Main Container */}
       <main className="max-w-6xl mx-auto px-4 py-8 sm:px-6">
         {/* Navigation Tabs */}
-        <div className="flex border-b border-border mb-8 overflow-x-auto">
+        <div className="flex border-b border-border mb-8 overflow-x-auto gap-1">
           <button
             onClick={() => setActiveTab('activities')}
-            className={`flex items-center gap-2 pb-4 px-4 font-semibold text-sm transition-all border-b border-b-2 whitespace-nowrap cursor-pointer ${
+            className={`flex items-center gap-2 pb-4 px-4 font-semibold text-sm transition-all border-b-2 whitespace-nowrap cursor-pointer ${
               activeTab === 'activities'
                 ? 'border-primary text-primary font-bold'
                 : 'border-transparent text-muted-foreground hover:text-foreground'
             }`}
           >
             <CheckSquare className="w-4 h-4" />
-            Manage Activities
+            Activities
           </button>
           
           <button
             onClick={() => setActiveTab('approvals')}
-            className={`flex items-center gap-2 pb-4 px-4 font-semibold text-sm transition-all border-b border-b-2 whitespace-nowrap relative cursor-pointer ${
+            className={`flex items-center gap-2 pb-4 px-4 font-semibold text-sm transition-all border-b-2 whitespace-nowrap relative cursor-pointer ${
               activeTab === 'approvals'
                 ? 'border-primary text-primary font-bold'
                 : 'border-transparent text-muted-foreground hover:text-foreground'
             }`}
           >
             <Inbox className="w-4 h-4" />
-            Approval Inbox
-            {pendingCount > 0 && (
-              <span className="absolute top-0.5 right-1.5 bg-primary text-primary-foreground text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center animate-pulse">
-                {pendingCount}
-              </span>
-            )}
+            <span>Approvals</span>
+            <NotificationBadge count={pendingCount} className="ml-1" />
+          </button>
+
+          <button
+            onClick={() => setActiveTab('rewards')}
+            className={`flex items-center gap-2 pb-4 px-4 font-semibold text-sm transition-all border-b-2 whitespace-nowrap relative cursor-pointer ${
+              activeTab === 'rewards'
+                ? 'border-primary text-primary font-bold'
+                : 'border-transparent text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            <Gift className="w-4 h-4" />
+            <span>Rewards</span>
+            <NotificationBadge count={proposedRewardsCount} className="ml-1" />
+          </button>
+
+          <button
+            onClick={() => setActiveTab('fulfillment')}
+            className={`flex items-center gap-2 pb-4 px-4 font-semibold text-sm transition-all border-b-2 whitespace-nowrap relative cursor-pointer ${
+              activeTab === 'fulfillment'
+                ? 'border-primary text-primary font-bold'
+                : 'border-transparent text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            <ShoppingBag className="w-4 h-4" />
+            <span>Fulfillments</span>
+            <NotificationBadge count={requestedRedemptionsCount} className="ml-1" />
+          </button>
+
+          <button
+            onClick={() => setActiveTab('negotiations')}
+            className={`flex items-center gap-2 pb-4 px-4 font-semibold text-sm transition-all border-b-2 whitespace-nowrap relative cursor-pointer ${
+              activeTab === 'negotiations'
+                ? 'border-primary text-primary font-bold'
+                : 'border-transparent text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            <MessageSquare className="w-4 h-4" />
+            <span>Negotiations</span>
+            <NotificationBadge count={pendingNegotiationsCount} className="ml-1" />
           </button>
           
           <button
             onClick={() => setActiveTab('dashboard')}
-            className={`flex items-center gap-2 pb-4 px-4 font-semibold text-sm transition-all border-b border-b-2 whitespace-nowrap cursor-pointer ${
+            className={`flex items-center gap-2 pb-4 px-4 font-semibold text-sm transition-all border-b-2 whitespace-nowrap cursor-pointer ${
               activeTab === 'dashboard'
                 ? 'border-primary text-primary font-bold'
                 : 'border-transparent text-muted-foreground hover:text-foreground'
             }`}
           >
             <Users className="w-4 h-4" />
-            Family Dashboard
+            Dashboard
           </button>
         </div>
 
@@ -92,6 +140,9 @@ export const ParentHome: React.FC = () => {
         <div className="animate-in fade-in duration-200">
           {activeTab === 'activities' && <ActivityManager />}
           {activeTab === 'approvals' && <ApprovalInbox />}
+          {activeTab === 'rewards' && <RewardManager />}
+          {activeTab === 'fulfillment' && <FulfillmentInbox />}
+          {activeTab === 'negotiations' && <NegotiationInbox />}
           {activeTab === 'dashboard' && <FamilyDashboard />}
         </div>
       </main>
