@@ -6,7 +6,8 @@ import { RewardManager } from './RewardManager';
 import { FulfillmentInbox } from './FulfillmentInbox';
 import { NegotiationInbox } from './NegotiationInbox';
 import { FamilyDashboard } from './FamilyDashboard';
-import { Sparkles, LogOut, CheckSquare, Inbox, Users, Gift, ShoppingBag, MessageSquare } from 'lucide-react';
+import { GrowthLog } from './GrowthLog';
+import { Sparkles, LogOut, CheckSquare, Inbox, Users, Gift, ShoppingBag, MessageSquare, BookOpen } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 import { ProfileBadge } from '../../components/ProfileBadge';
 import { NotificationBadge } from '../../components/NotificationBadge';
@@ -15,7 +16,7 @@ import { useData } from '../../context/DataContext';
 export const ParentHome: React.FC = () => {
   const { currentProfile, clearProfile } = useProfile();
   const { completions, rewards, redemptions, negotiations } = useData();
-  const [activeTab, setActiveTab] = useState<'activities' | 'approvals' | 'rewards' | 'fulfillment' | 'negotiations' | 'dashboard'>('activities');
+  const [activeTab, setActiveTab] = useState<'activities' | 'approvals' | 'rewards' | 'fulfillment' | 'negotiations' | 'dashboard' | 'journey'>('activities');
 
   if (!currentProfile) return null;
 
@@ -124,6 +125,18 @@ export const ParentHome: React.FC = () => {
           </button>
           
           <button
+            onClick={() => setActiveTab('journey')}
+            className={`flex items-center gap-2 pb-4 px-4 font-semibold text-sm transition-all border-b-2 whitespace-nowrap cursor-pointer ${
+              activeTab === 'journey'
+                ? 'border-primary text-primary font-bold'
+                : 'border-transparent text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            <BookOpen className="w-4 h-4" />
+            Journey
+          </button>
+
+          <button
             onClick={() => setActiveTab('dashboard')}
             className={`flex items-center gap-2 pb-4 px-4 font-semibold text-sm transition-all border-b-2 whitespace-nowrap cursor-pointer ${
               activeTab === 'dashboard'
@@ -143,6 +156,7 @@ export const ParentHome: React.FC = () => {
           {activeTab === 'rewards' && <RewardManager />}
           {activeTab === 'fulfillment' && <FulfillmentInbox />}
           {activeTab === 'negotiations' && <NegotiationInbox />}
+          {activeTab === 'journey' && <GrowthLog />}
           {activeTab === 'dashboard' && <FamilyDashboard />}
         </div>
       </main>

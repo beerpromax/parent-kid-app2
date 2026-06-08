@@ -6,7 +6,8 @@ import { subscribeLedger } from '../../lib/repos/ledger.repo';
 import { subscribeRewards } from '../../lib/repos/rewards.repo';
 import { subscribeRedemptions } from '../../lib/repos/redemptions.repo';
 import { subscribeNegotiations } from '../../lib/repos/negotiations.repo';
-import { Activity, Completion, LedgerEntry, Reward, RedemptionRecord, NegotiationThread } from '../../lib/types';
+import { subscribeGrowthLog } from '../../lib/repos/growthlog.repo';
+import { Activity, Completion, LedgerEntry, Reward, RedemptionRecord, NegotiationThread, GrowthLogEntry } from '../../lib/types';
 
 interface DataContextType {
   activities: Activity[];
@@ -15,19 +16,26 @@ interface DataContextType {
   rewards: Reward[];
   redemptions: RedemptionRecord[];
   negotiations: NegotiationThread[];
+  growthLog: GrowthLogEntry[];
+  viewedKidId: string;
+  setViewedKidId: (id: string) => void;
   loading: boolean;
+  growthLogLoading: boolean;
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
 
 export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { familyId, currentProfile } = useProfile();
+  const { familyId, currentProfile, profiles } = useProfile();
   const [activities, setActivities] = useState<Activity[]>([]);
   const [completions, setCompletions] = useState<Completion[]>([]);
   const [ledger, setLedger] = useState<LedgerEntry[]>([]);
   const [rewards, setRewards] = useState<Reward[]>([]);
   const [redemptions, setRedemptions] = useState<RedemptionRecord[]>([]);
   const [negotiations, setNegotiations] = useState<NegotiationThread[]>([]);
+  const [growthLog, setGrowthLog] = useState<GrowthLogEntry[]>([]);
+  const [viewedKidId, setViewedKidId] = useState<string>('');
+  const [growthLogLoading, setGrowthLogLoading] = useState(true);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -131,6 +139,39 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
   }, [familyId, currentProfile]);
 
+  useEffect(() => {
+    if (currentProfile) {
+      if (currentProfile.role === 'kid') {
+        setViewedKidId(currentProfile.id);
+      } else {
+        const kids = profiles.filter((p) => p.role === 'kid');
+        if (kids.length > 0 && !viewedKidId) {
+          setViewedKidId(kids[0].id);
+        }
+      }
+    } else {
+      setViewedKidId('');
+    }
+  }, [profiles, currentProfile, viewedKidId]);
+
+  useEffect(() => {
+    if (!familyId || !viewedKidId) {
+      setGrowthLog([]);
+      setGrowthLogLoading(false);
+      return;
+    }
+
+    setGrowthLogLoading(true);
+    const unsub = subscribeGrowthLog(familyId, { kidId: viewedKidId }, (entries) => {
+      setGrowthLog(entries);
+      setGrowthLogLoading(false);
+    });
+
+    return () => {
+      unsub();
+    };
+  }, [familyId, viewedKidId]);
+
   return (
     <DataContext.Provider
       value={{
@@ -140,7 +181,11 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
         rewards,
         redemptions,
         negotiations,
+        growthLog,
+        viewedKidId,
+        setViewedKidId,
         loading,
+        growthLogLoading,
       }}
     >
       {children}

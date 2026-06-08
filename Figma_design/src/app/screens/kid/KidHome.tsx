@@ -5,9 +5,10 @@ import { ActivityList } from './ActivityList';
 import { TokenWallet } from './TokenWallet';
 import { Wishlist } from './Wishlist';
 import { MyNegotiations } from './MyNegotiations';
+import { MyJourney } from './MyJourney';
 import { NotificationBadge } from '../../components/NotificationBadge';
 import { StreakBadge } from '../../components/StreakBadge';
-import { Sparkles, LogOut, CheckSquare, Wallet, Gift, MessageSquare } from 'lucide-react';
+import { Sparkles, LogOut, CheckSquare, Wallet, Gift, MessageSquare, BookOpen } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 import { ProfileBadge } from '../../components/ProfileBadge';
 import { TokenChip } from '../../components/TokenChip';
@@ -18,7 +19,7 @@ import { Completion } from '../../../lib/types';
 export const KidHome: React.FC = () => {
   const { currentProfile, clearProfile } = useProfile();
   const { completions, negotiations } = useData();
-  const [activeTab, setActiveTab] = useState<'activities' | 'wallet' | 'wishlist' | 'negotiations'>('activities');
+  const [activeTab, setActiveTab] = useState<'activities' | 'wallet' | 'wishlist' | 'negotiations' | 'journey'>('activities');
   const prevCompletionsRef = useRef<Completion[]>([]);
 
   useEffect(() => {
@@ -137,6 +138,18 @@ export const KidHome: React.FC = () => {
             <span>Negotiations</span>
             <NotificationBadge count={pendingNegotiationsCount} className="ml-1" />
           </button>
+
+          <button
+            onClick={() => setActiveTab('journey')}
+            className={`flex items-center gap-2 pb-4 px-4 font-semibold text-sm transition-all border-b-2 whitespace-nowrap cursor-pointer relative ${
+              activeTab === 'journey'
+                ? 'border-primary text-primary font-bold'
+                : 'border-transparent text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            <BookOpen className="w-4 h-4" />
+            <span>My Journey</span>
+          </button>
         </div>
 
         {/* Tab Content */}
@@ -145,6 +158,7 @@ export const KidHome: React.FC = () => {
           {activeTab === 'wallet' && <TokenWallet />}
           {activeTab === 'wishlist' && <Wishlist />}
           {activeTab === 'negotiations' && <MyNegotiations />}
+          {activeTab === 'journey' && <MyJourney />}
         </div>
       </main>
     </div>

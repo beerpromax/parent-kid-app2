@@ -20,11 +20,16 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '../../components/ui/alert-dialog';
+import { EntryComposerDialog } from '../../components/EntryComposerDialog';
+import { familyLocalDate } from '../../../lib/datetime';
+import { GrowthLogEntry } from '../../../lib/types';
 
 export const ApprovalInbox: React.FC = () => {
-  const { completions, loading } = useData();
+  const { completions, activities, loading } = useData();
   const { familyId, profiles, currentProfile } = useProfile();
   const [inFlightIds, setInFlightIds] = useState<string[]>([]);
+  const [isComposerOpen, setIsComposerOpen] = useState(false);
+  const [composerDraft, setComposerDraft] = useState<GrowthLogEntry | undefined>(undefined);
 
   const pendingCompletions = completions.filter((c) => c.status === 'pending');
 
@@ -34,7 +39,36 @@ export const ApprovalInbox: React.FC = () => {
     try {
       await approveCompletion(familyId, id, currentProfile.id);
       const kid = profiles.find((p) => p.id === kidId);
-      toast.success(`Approved! +${value} tokens to ${kid?.name || 'kid'}`);
+      const completion = completions.find((c) => c.id === id);
+      toast.success(`Approved! +${value} tokens to ${kid?.name || 'kid'}`, {
+        action: {
+          label: 'Add to Journey',
+          onClick: () => {
+            if (!completion) return;
+            const activity = activities.find((a) => a.id === completion.activityId);
+            const draft: GrowthLogEntry = {
+              id: '',
+              familyId,
+              kidId: completion.kidId,
+              date: familyLocalDate(Date.now()),
+              title: `Completed: ${completion.activityTitleSnapshot}`,
+              activityContent: `Successfully completed activity: "${completion.activityTitleSnapshot}" and earned ${completion.tokenValueSnapshot} tokens!`,
+              durationMinutes: activity?.durationMinutes,
+              participantProfileIds: [completion.kidId],
+              participantNames: [],
+              photos: [],
+              linkedCompletionId: completion.id,
+              linkedActivityId: completion.activityId,
+              status: 'active',
+              createdByProfileId: currentProfile.id,
+              createdAt: Date.now(),
+              updatedAt: Date.now()
+            };
+            setComposerDraft(draft);
+            setIsComposerOpen(true);
+          }
+        }
+      });
     } catch (err) {
       console.error('Error approving completion:', err);
       toast.error('Failed to approve completion');
@@ -169,6 +203,17 @@ export const ApprovalInbox: React.FC = () => {
             );
           })}
         </div>
+      )}
+      {isComposerOpen && composerDraft && (
+        <EntryComposerDialog
+          isOpen={isComposerOpen}
+          onClose={() => {
+            setIsComposerOpen(false);
+            setComposerDraft(undefined);
+          }}
+          entry={composerDraft}
+          kidId={composerDraft.kidId}
+        />
       )}
     </div>
   );

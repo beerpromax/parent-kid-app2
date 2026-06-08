@@ -12,14 +12,25 @@ This webapp is a family coordination and task reward tracker designed for parent
 - **Kid submission flow**: Submit completed chores with optional notes and celebrate with confetti.
 - **Token Wallet**: View current token balances and a detailed transaction history log (showing the last 20 credits).
 - **Rewards Catalog Stub**: A read-only "Coming Soon" preview of rewards.
+- **Phase 2 - Streaks & Negotiations**: Real-time streaks tracking, negotiation offers for chore values and rewards, and catalog redemption.
+- **Phase 3 - Growth Journey Log**: A chronological timeline of kid activities with duration, participants, mood/energy tags, notes, and photo attachments.
 
 ---
 
-## Architectural Resiliency (Offline & Local Storage Fallback)
+## ⚠️ Child-Photo Privacy Notice (Phase 3 Blocker)
 
-To accommodate local environments where a live Firestore instance or Java (required for the Firebase emulator) is not set up, the repository layer automatically detects if **Local Storage Fallback** is enabled.
+This phase introduces **child-photo storage** using Firebase Storage. Since the app currently runs with no authentication and open rules (for developer local validation), **you must not deploy this application publicly or upload real photographs of children** until real authentication (Firebase Auth) and secure, restrictive Firestore and Storage security rules are configured. Use stock/placeholder images for local testing.
 
-When `VITE_USE_LOCAL_STORAGE=true` is set, the app will run entirely in the browser using `localStorage`. It simulates a real-time reactive database by dispatching state events when writes occur, ensuring all panels and views sync immediately without refresh.
+---
+
+## Architectural Resiliency (Offline & Local Storage/IndexedDB Fallback)
+
+To accommodate local environments where a live Firestore/Firebase Storage instance is not configured, the app automatically detects if local fallback is enabled:
+
+1. **Local Storage (Firestore Fallback)**: When `VITE_USE_LOCAL_STORAGE=true`, database entries (profiles, tasks, ledger, negotiations) are stored reactively in `localStorage`.
+2. **IndexedDB (Storage Fallback)**: Resized photo uploads and thumbnails are saved as Blobs inside browser **IndexedDB** under the database `FamilyAppStorage`. This keeps images fully offline, persisted across reloads, and prevents hitting the 5MB `localStorage` limit.
+
+Client-side image processing automatically resizes uploads to max 1600px edge and **strips all EXIF metadata** (including GPS coordinates) for baseline privacy.
 
 ---
 

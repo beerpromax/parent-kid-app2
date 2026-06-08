@@ -125,3 +125,42 @@ export interface NegotiationOffer {  // subcollection of a thread
   kind: OfferKind;
   createdAt: number;
 }
+
+export type MoodTag = 'joyful' | 'happy' | 'calm' | 'meh' | 'tired' | 'frustrated' | 'sad';
+export type EnergyTag = 'low' | 'medium' | 'high';
+
+export interface PhotoRef {
+  id: string;
+  storagePath: string;     // full path in Storage (for deletion)
+  downloadURL: string;     // cached display URL
+  thumbnailURL?: string;   // ~320px version
+  width?: number;
+  height?: number;
+  sizeBytes?: number;
+  uploadedAt: number;
+}
+
+export type GrowthEntryStatus = 'active' | 'trashed';
+
+export interface GrowthLogEntry {
+  id: string;
+  familyId: string;
+  kidId: string;                  // whose log
+  date: string;                   // 'YYYY-MM-DD' family-local (D8) — drives ordering
+  title?: string;
+  activityContent: string;        // PRD "活动内容" — free text of what happened
+  durationMinutes?: number;
+  participantProfileIds: string[];// family members involved
+  participantNames?: string[];    // free-text extras (e.g., "Grandma")
+  moodTag?: MoodTag;
+  energyTag?: EnergyTag;
+  note?: string;                  // PRD "短文字备注"
+  photos: PhotoRef[];
+  // optional linkage to the activity system (set when created via the bridge, D2)
+  linkedCompletionId?: string;
+  linkedActivityId?: string;
+  status: GrowthEntryStatus;
+  createdByProfileId: string;
+  createdAt: number;
+  updatedAt: number;
+}

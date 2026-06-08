@@ -51,3 +51,14 @@ export const offersCol = (familyId: string, threadId: string) =>
 
 export const offerDoc = (familyId: string, threadId: string, offerId: string) => 
   doc(db, 'families', familyId, 'negotiations', threadId, 'offers', offerId);
+
+export const growthLogCol = (familyId: string) =>
+  collection(db, 'families', familyId, 'growthLog');
+
+export const growthEntryDoc = (familyId: string, entryId: string) =>
+  doc(db, 'families', familyId, 'growthLog', entryId);
+
+export const photoStoragePath = (familyId: string, kidId: string, entryId: string, photoId: string, variant: 'full' | 'thumb') => {
+  const ext = variant === 'thumb' ? '_thumb.jpg' : '.jpg';
+  return `families/${familyId}/growth/${kidId}/${entryId}/${photoId}${ext}`;
+};
