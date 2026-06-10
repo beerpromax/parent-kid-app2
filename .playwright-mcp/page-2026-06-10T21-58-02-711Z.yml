@@ -1,0 +1,98 @@
+- generic:
+  - generic:
+    - generic:
+      - banner:
+        - generic:
+          - generic:
+            - img
+            - heading [level=1]: Family Portal
+          - generic:
+            - generic:
+              - generic:
+                - generic: 👑
+              - generic: Parent
+            - button:
+              - img
+              - generic: Sign Out
+      - main:
+        - generic:
+          - button:
+            - img
+            - text: Activities
+          - button:
+            - img
+            - generic: Approvals
+          - button:
+            - img
+            - generic: Rewards
+          - button:
+            - img
+            - generic: Fulfillments
+          - button:
+            - img
+            - generic: Negotiations
+          - button:
+            - img
+            - text: Journey
+          - button:
+            - img
+            - text: Dashboard
+          - button:
+            - img
+            - text: Family
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=4]: Family Members
+                  - paragraph: Add kids, then give them an invite code so they can log in on their own device.
+                - button:
+                  - img
+                  - text: Add kid
+              - generic:
+                - generic:
+                  - generic: 👑
+                  - generic:
+                    - paragraph: Parent
+                    - paragraph: parent
+                  - generic:
+                    - img
+                    - text: Linked
+                - paragraph: No kids yet — add one to get started.
+    - region "Notifications alt+T"
+  - dialog "Add a kid" [ref=e204]:
+    - heading "Add a kid" [level=2] [ref=e206]
+    - generic [ref=e207]:
+      - generic [ref=e208]:
+        - generic [ref=e209]: Name
+        - textbox "Name" [active] [ref=e210]:
+          - /placeholder: Mia
+      - generic [ref=e211]:
+        - generic [ref=e212]: Avatar
+        - generic [ref=e213]:
+          - button "👧" [ref=e214] [cursor=pointer]
+          - button "👦" [ref=e215] [cursor=pointer]
+          - button "🧒" [ref=e216] [cursor=pointer]
+          - button "👶" [ref=e217] [cursor=pointer]
+          - button "🐱" [ref=e218] [cursor=pointer]
+          - button "🐶" [ref=e219] [cursor=pointer]
+          - button "🦊" [ref=e220] [cursor=pointer]
+          - button "🐼" [ref=e221] [cursor=pointer]
+          - button "🦄" [ref=e222] [cursor=pointer]
+          - button "🐯" [ref=e223] [cursor=pointer]
+      - generic [ref=e224]:
+        - generic [ref=e225]: Color
+        - generic [ref=e226]:
+          - button [ref=e227] [cursor=pointer]
+          - button [ref=e228] [cursor=pointer]
+          - button [ref=e229] [cursor=pointer]
+          - button [ref=e230] [cursor=pointer]
+          - button [ref=e231] [cursor=pointer]
+          - button [ref=e232] [cursor=pointer]
+      - generic [ref=e233]:
+        - button "Cancel" [ref=e234]
+        - button "Add kid" [ref=e235]
+    - button "Close" [ref=e236]:
+      - img
+      - generic [ref=e237]: Close

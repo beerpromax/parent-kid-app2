@@ -1,0 +1,67 @@
+- generic [ref=e2]:
+  - generic [ref=e711]:
+    - banner [ref=e712]:
+      - generic [ref=e713]:
+        - generic [ref=e714]:
+          - img [ref=e715]
+          - heading "Family Portal" [level=1] [ref=e717]
+        - generic [ref=e718]:
+          - generic [ref=e719]:
+            - generic [ref=e721]: 👑
+            - generic [ref=e722]: Parent
+          - button "Sign Out" [ref=e723] [cursor=pointer]:
+            - img
+            - generic [ref=e724]: Sign Out
+    - main [ref=e725]:
+      - generic [ref=e726]:
+        - button "Activities" [ref=e727] [cursor=pointer]:
+          - img [ref=e728]
+          - text: Activities
+        - button "Approvals 1" [active] [ref=e731] [cursor=pointer]:
+          - img [ref=e732]
+          - generic [ref=e735]: Approvals
+          - generic [ref=e736]: "1"
+        - button "Rewards" [ref=e737] [cursor=pointer]:
+          - img [ref=e738]
+          - generic [ref=e742]: Rewards
+        - button "Fulfillments" [ref=e743] [cursor=pointer]:
+          - img [ref=e744]
+          - generic [ref=e747]: Fulfillments
+        - button "Negotiations" [ref=e748] [cursor=pointer]:
+          - img [ref=e749]
+          - generic [ref=e751]: Negotiations
+        - button "Journey" [ref=e752] [cursor=pointer]:
+          - img [ref=e753]
+          - text: Journey
+        - button "Dashboard" [ref=e755] [cursor=pointer]:
+          - img [ref=e756]
+          - text: Dashboard
+        - button "Family" [ref=e761] [cursor=pointer]:
+          - img [ref=e762]
+          - text: Family
+      - generic [ref=e893]:
+        - generic [ref=e894]:
+          - heading "Pending Approvals" [level=2] [ref=e895]
+          - paragraph [ref=e896]: Review completions submitted by kids
+        - generic [ref=e898]:
+          - generic [ref=e899]:
+            - generic [ref=e900]:
+              - generic [ref=e901]:
+                - generic [ref=e903]: 👧
+                - generic [ref=e904]: Mia
+              - generic [ref=e905]:
+                - img
+                - generic [ref=e906]: "5"
+            - generic [ref=e907]:
+              - heading "Help with dishes" [level=3] [ref=e908]
+              - generic [ref=e909]:
+                - img [ref=e910]
+                - generic [ref=e912]: "Submitted: 6/10/2026, 6:00:25 PM"
+          - generic [ref=e913]:
+            - button "Reject" [ref=e914] [cursor=pointer]:
+              - img
+              - text: Reject
+            - button "Approve" [ref=e915] [cursor=pointer]:
+              - img
+              - text: Approve
+  - region "Notifications alt+T"

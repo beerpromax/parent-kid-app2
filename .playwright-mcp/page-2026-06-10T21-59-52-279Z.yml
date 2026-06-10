@@ -1,0 +1,5 @@
+- generic [ref=e2]:
+  - generic [ref=e488]:
+    - paragraph [ref=e489]: This account isn’t linked to a family. Sign out and join with an invite code, or create a new family.
+    - button "Sign out" [ref=e490]
+  - region "Notifications alt+T"

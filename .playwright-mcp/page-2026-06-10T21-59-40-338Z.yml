@@ -1,0 +1,33 @@
+- generic [ref=e2]:
+  - generic [ref=e451]:
+    - generic [ref=e452]:
+      - img [ref=e455]
+      - heading "Family Rewards" [level=4] [ref=e457]
+      - paragraph [ref=e458]: Earn tokens together, grow together
+    - generic [ref=e460]:
+      - tablist [ref=e461]:
+        - tab "Log in" [ref=e462]:
+          - img
+          - text: Log in
+        - tab "New family" [ref=e463]:
+          - img
+          - text: New family
+        - tab "Invite code" [active] [selected] [ref=e464]:
+          - img
+          - text: Invite code
+      - tabpanel "Invite code" [ref=e474]:
+        - generic [ref=e475]:
+          - generic [ref=e476]:
+            - generic [ref=e477]: Invite code
+            - textbox "Invite code" [ref=e478]:
+              - /placeholder: ABCD2345
+          - generic [ref=e479]:
+            - generic [ref=e480]: Pick a username
+            - textbox "Pick a username" [ref=e481]:
+              - /placeholder: mia_2017
+          - generic [ref=e482]:
+            - generic [ref=e483]: Pick a password
+            - textbox "Pick a password" [ref=e484]
+          - button "Join my family" [ref=e485]
+          - paragraph [ref=e486]: Ask your parent for an invite code from the Family tab.
+  - region "Notifications alt+T"

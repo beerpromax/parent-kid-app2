@@ -1,0 +1,126 @@
+- generic:
+  - generic:
+    - generic:
+      - banner:
+        - generic:
+          - generic:
+            - img
+            - heading [level=1]: Kid Zone
+          - generic:
+            - generic:
+              - img
+              - generic: 1 Day
+            - generic:
+              - generic:
+                - generic: 👧
+              - generic: Mia
+            - generic:
+              - img
+              - generic: "5"
+            - button:
+              - img
+              - generic: Sign Out
+      - main:
+        - generic:
+          - button:
+            - img
+            - text: My Activities
+          - button:
+            - img
+            - text: My Wallet
+          - button:
+            - img
+            - text: Rewards
+          - button:
+            - img
+            - generic: Negotiations
+          - button:
+            - img
+            - generic: My Journey
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - heading [level=2]: Rewards Catalog
+                - paragraph: Spend your earned tokens to redeem rewards, or propose new ones!
+              - button:
+                - img
+                - text: Propose a Reward
+            - generic:
+              - tablist:
+                - tab [selected]: Available Rewards
+                - tab: My Proposals
+              - tabpanel:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - heading [level=4]:
+                          - img
+                          - generic: Ice Cream Treat
+                      - generic:
+                        - img
+                        - generic: "15"
+                    - generic:
+                      - paragraph: A delicious double-scoop ice cream with toppings!
+                      - generic:
+                        - generic:
+                          - img
+                          - generic: "For:"
+                        - generic:
+                          - generic: All Kids
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button:
+                              - img
+                              - text: Negotiate Cost
+                            - button [disabled]: Need More Tokens
+                  - generic:
+                    - generic:
+                      - generic:
+                        - heading [level=4]:
+                          - img
+                          - generic: Extra 30 Min Screen Time
+                      - generic:
+                        - img
+                        - generic: "25"
+                    - generic:
+                      - paragraph: 30 additional minutes of gaming or video time.
+                      - generic:
+                        - generic:
+                          - img
+                          - generic: "For:"
+                        - generic:
+                          - generic: All Kids
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button:
+                              - img
+                              - text: Negotiate Cost
+                            - button [disabled]: Need More Tokens
+    - region "Notifications alt+T"
+  - dialog "Negotiate Reward Cost" [ref=e1367]:
+    - heading "Negotiate Reward Cost" [level=2] [ref=e1369]
+    - generic [ref=e1370]:
+      - generic [ref=e1371]:
+        - heading "Ice Cream Treat" [level=3] [ref=e1372]
+        - paragraph [ref=e1373]:
+          - text: "Current Cost:"
+          - generic [ref=e1374]: 15 tokens
+      - generic [ref=e1375]:
+        - generic [ref=e1376]: Your Proposed Cost (tokens)
+        - spinbutton "Your Proposed Cost (tokens)" [ref=e1377]
+      - generic [ref=e1378]:
+        - generic [ref=e1379]: Why do you want to change it?
+        - textbox "Why do you want to change it?" [ref=e1380]:
+          - /placeholder: Write a message to your parent explaining why...
+      - generic [ref=e1381]:
+        - button "Cancel" [ref=e1382]
+        - button "Send Proposal" [ref=e1383]
+    - button "Close" [active] [ref=e1384]:
+      - img
+      - generic [ref=e1385]: Close

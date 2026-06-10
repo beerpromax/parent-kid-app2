@@ -1,0 +1,171 @@
+- generic:
+  - generic:
+    - generic:
+      - banner:
+        - generic:
+          - generic:
+            - img
+            - heading [level=1]: Family Portal
+          - generic:
+            - generic:
+              - generic:
+                - generic: 👑
+              - generic: Parent
+            - button:
+              - img
+              - generic: Sign Out
+      - main:
+        - generic:
+          - button:
+            - img
+            - text: Activities
+          - button:
+            - img
+            - generic: Approvals
+          - button:
+            - img
+            - generic: Rewards
+          - button:
+            - img
+            - generic: Fulfillments
+          - button:
+            - img
+            - generic: Negotiations
+          - button:
+            - img
+            - text: Journey
+          - button:
+            - img
+            - text: Dashboard
+          - button:
+            - img
+            - text: Family
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - heading [level=2]: Growth Journeys
+                - paragraph: Follow and document each child's learning history and achievements
+              - generic:
+                - generic:
+                  - img
+                  - text: No moods logged
+                - button:
+                  - img
+                  - generic: Trash
+                - button:
+                  - img
+                  - text: Add Entry
+            - generic:
+              - button:
+                - generic: 👧
+                - generic: Mia
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=4]:
+                    - img
+                    - text: Timeline Filters
+                  - generic:
+                    - button: Show Filters
+              - generic:
+                - generic:
+                  - img
+                - heading [level=3]: Your Journey Log is empty
+                - paragraph: Capture milestones, learning activities, or fun family moments here!
+                - button: Add First Entry
+    - region "Notifications alt+T"
+  - dialog "New Growth Log Entry" [ref=e1754]:
+    - generic [ref=e1755]:
+      - heading "New Growth Log Entry" [level=2] [ref=e1756]
+      - paragraph [ref=e1757]: Capture an event, learning chore, or special milestone for the timeline.
+    - generic [ref=e1758]:
+      - generic [ref=e1759]:
+        - generic [ref=e1760]:
+          - text: Title
+          - generic [ref=e1761]: (Optional)
+        - textbox "Title (Optional)" [ref=e1762]:
+          - /placeholder: e.g. Finished Lego Castle Assembly
+          - text: First live Firestore entry
+      - generic [ref=e1763]:
+        - generic [ref=e1764]:
+          - generic [ref=e1765]: Date
+          - textbox "Date" [ref=e1766]: 2026-06-10
+        - generic [ref=e1767]:
+          - generic [ref=e1768]:
+            - text: Duration
+            - generic [ref=e1769]: (Minutes, optional)
+          - spinbutton "Duration (Minutes, optional)" [ref=e1770]
+      - generic [ref=e1771]:
+        - generic [ref=e1772]:
+          - text: What happened?
+          - generic [ref=e1773]: "*"
+        - textbox "What happened? *" [ref=e1774]:
+          - /placeholder: Write description of the activity or milestone...
+          - text: Verified the growth journey log works against live Firestore, text-only while photos are deferred.
+      - generic [ref=e1775]:
+        - generic [ref=e1776]:
+          - text: Short Notes
+          - generic [ref=e1777]: (Reflections, quotes, optional)
+        - textbox "Short Notes (Reflections, quotes, optional)" [ref=e1778]:
+          - /placeholder: e.g. Mia was very proud and didn't give up once!
+      - generic [ref=e1779]:
+        - generic [ref=e1780]:
+          - generic [ref=e1781]: Who participated?
+          - generic [ref=e1782]:
+            - button "👑 Parent" [ref=e1783] [cursor=pointer]:
+              - generic [ref=e1785]: 👑
+              - generic [ref=e1786]: Parent
+            - button "👧 Mia" [ref=e1787] [cursor=pointer]:
+              - generic [ref=e1789]: 👧
+              - generic [ref=e1790]: Mia
+        - generic [ref=e1791]:
+          - generic [ref=e1792]: Additional Participants (Friends, relatives...)
+          - generic [ref=e1793]:
+            - textbox "Type name and press Enter or comma..." [ref=e1794]
+            - button "Add" [ref=e1795] [cursor=pointer]:
+              - img
+              - text: Add
+      - generic [ref=e1796]:
+        - generic [ref=e1797]:
+          - generic [ref=e1798]: How was the mood? (Optional)
+          - generic [ref=e1799]:
+            - button "😄 Joyful" [active] [ref=e1800] [cursor=pointer]:
+              - generic [ref=e1801]: 😄
+              - generic [ref=e1802]: Joyful
+            - button "😊 Happy" [ref=e1803] [cursor=pointer]:
+              - generic [ref=e1804]: 😊
+              - generic [ref=e1805]: Happy
+            - button "😌 Calm" [ref=e1806] [cursor=pointer]:
+              - generic [ref=e1807]: 😌
+              - generic [ref=e1808]: Calm
+            - button "😐 Meh" [ref=e1809] [cursor=pointer]:
+              - generic [ref=e1810]: 😐
+              - generic [ref=e1811]: Meh
+            - button "😴 Tired" [ref=e1812] [cursor=pointer]:
+              - generic [ref=e1813]: 😴
+              - generic [ref=e1814]: Tired
+            - button "😣 Frustrated" [ref=e1815] [cursor=pointer]:
+              - generic [ref=e1816]: 😣
+              - generic [ref=e1817]: Frustrated
+            - button "😢 Sad" [ref=e1818] [cursor=pointer]:
+              - generic [ref=e1819]: 😢
+              - generic [ref=e1820]: Sad
+        - generic [ref=e1821]:
+          - generic [ref=e1822]: What was the energy level? (Optional)
+          - generic [ref=e1823]:
+            - button "🔋 Low Energy" [ref=e1824] [cursor=pointer]:
+              - generic [ref=e1825]: 🔋
+              - generic [ref=e1826]: Low Energy
+            - button "🔋🔋 Medium Energy" [ref=e1827] [cursor=pointer]:
+              - generic [ref=e1828]: 🔋🔋
+              - generic [ref=e1829]: Medium Energy
+            - button "⚡ High Energy" [ref=e1830] [cursor=pointer]:
+              - generic [ref=e1831]: ⚡
+              - generic [ref=e1832]: High Energy
+    - generic [ref=e1833]:
+      - button "Cancel" [ref=e1834] [cursor=pointer]
+      - button "Save Entry" [ref=e1835] [cursor=pointer]
+    - button "Close" [ref=e1836]:
+      - img
+      - generic [ref=e1837]: Close

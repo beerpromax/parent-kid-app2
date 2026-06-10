@@ -1,0 +1,27 @@
+- generic [ref=e2]:
+  - generic [ref=e1105]:
+    - generic [ref=e1106]:
+      - img [ref=e1109]
+      - heading "Family Rewards" [level=4] [ref=e1111]
+      - paragraph [ref=e1112]: Earn tokens together, grow together
+    - generic [ref=e1114]:
+      - tablist [ref=e1115]:
+        - tab "Log in" [selected] [ref=e1116]:
+          - img
+          - text: Log in
+        - tab "New family" [ref=e1117]:
+          - img
+          - text: New family
+        - tab "Invite code" [ref=e1118]:
+          - img
+          - text: Invite code
+      - tabpanel "Log in" [ref=e1119]:
+        - generic [ref=e1120]:
+          - generic [ref=e1121]:
+            - generic [ref=e1122]: Email or kid username
+            - textbox "Email or kid username" [ref=e1123]
+          - generic [ref=e1124]:
+            - generic [ref=e1125]: Password
+            - textbox "Password" [ref=e1126]
+          - button "Log in" [ref=e1127]
+  - region "Notifications alt+T"

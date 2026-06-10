@@ -1,0 +1,30 @@
+[     100ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5173/node_modules/.vite/deps/chunk-BH4GTE34.js?v=42fc7b8a:21608
+[   14694ms] [ERROR] Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?%s%s 
+
+Check the render method of `SlotClone`. 
+    at DialogOverlay (http://localhost:5173/src/app/components/ui/dialog.tsx:62:3)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-QKMCK2GX.js?v=42fc7b8a:73:11
+    at http://localhost:5173/node_modules/.vite/deps/chunk-QKMCK2GX.js?v=42fc7b8a:54:11
+    at http://localhost:5173/node_modules/.vite/deps/chunk-K43W7Y6M.js?v=42fc7b8a:41:13
+    at http://localhost:5173/node_modules/.vite/deps/chunk-XQYDAV7Q.js?v=42fc7b8a:258:22
+    at Presence (http://localhost:5173/node_modules/.vite/deps/chunk-IOMG5SMI.js?v=42fc7b8a:34:11)
+    at Provider (http://localhost:5173/node_modules/.vite/deps/chunk-AKFJ564R.js?v=42fc7b8a:38:15)
+    at DialogPortal (http://localhost:5173/node_modules/.vite/deps/chunk-AKERV6A2.js?v=42fc7b8a:1192:11)
+    at DialogPortal (http://localhost:5173/src/app/components/ui/dialog.tsx:42:6)
+    at DialogContent (http://localhost:5173/src/app/components/ui/dialog.tsx:87:3)
+    at Provider (http://localhost:5173/node_modules/.vite/deps/chunk-AKFJ564R.js?v=42fc7b8a:38:15)
+    at Dialog (http://localhost:5173/node_modules/.vite/deps/chunk-AKERV6A2.js?v=42fc7b8a:1133:5)
+    at Dialog (http://localhost:5173/src/app/components/ui/dialog.tsx:22:6)
+    at EntryComposerDialog (http://localhost:5173/src/app/components/EntryComposerDialog.tsx?t=1781129317445:36:3)
+    at div
+    at GrowthLog (http://localhost:5173/src/app/screens/parent/GrowthLog.tsx?t=1781129317445:30:24)
+    at div
+    at main
+    at div
+    at ParentHome (http://localhost:5173/src/app/screens/parent/ParentHome.tsx?t=1781129317445:35:30)
+    at AppContent (http://localhost:5173/src/app/App.tsx?t=1781129317445:32:50)
+    at DataProvider (http://localhost:5173/src/app/context/DataContext.tsx?t=1781129317445:28:32)
+    at ProfileProvider (http://localhost:5173/src/app/context/ProfileContext.tsx?t=1781129317445:24:35)
+    at AuthProvider (http://localhost:5173/src/app/context/AuthContext.tsx?t=1781129317445:25:32)
+    at AppProviders (http://localhost:5173/src/app/providers/AppProviders.tsx?t=1781129317445:20:32)
+    at App @ http://localhost:5173/node_modules/.vite/deps/chunk-BH4GTE34.js?v=42fc7b8a:520

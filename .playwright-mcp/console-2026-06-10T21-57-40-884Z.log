@@ -1,0 +1,184 @@
+[      96ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5173/node_modules/.vite/deps/chunk-BH4GTE34.js?v=42fc7b8a:21608
+[   21298ms] [ERROR] Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?%s%s 
+
+Check the render method of `SlotClone`. 
+    at DialogOverlay (http://localhost:5173/src/app/components/ui/dialog.tsx:62:3)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-QKMCK2GX.js?v=42fc7b8a:73:11
+    at http://localhost:5173/node_modules/.vite/deps/chunk-QKMCK2GX.js?v=42fc7b8a:54:11
+    at http://localhost:5173/node_modules/.vite/deps/chunk-K43W7Y6M.js?v=42fc7b8a:41:13
+    at http://localhost:5173/node_modules/.vite/deps/chunk-XQYDAV7Q.js?v=42fc7b8a:258:22
+    at Presence (http://localhost:5173/node_modules/.vite/deps/chunk-IOMG5SMI.js?v=42fc7b8a:34:11)
+    at Provider (http://localhost:5173/node_modules/.vite/deps/chunk-AKFJ564R.js?v=42fc7b8a:38:15)
+    at DialogPortal (http://localhost:5173/node_modules/.vite/deps/chunk-AKERV6A2.js?v=42fc7b8a:1192:11)
+    at DialogPortal (http://localhost:5173/src/app/components/ui/dialog.tsx:42:6)
+    at DialogContent (http://localhost:5173/src/app/components/ui/dialog.tsx:87:3)
+    at Provider (http://localhost:5173/node_modules/.vite/deps/chunk-AKFJ564R.js?v=42fc7b8a:38:15)
+    at Dialog (http://localhost:5173/node_modules/.vite/deps/chunk-AKERV6A2.js?v=42fc7b8a:1133:5)
+    at Dialog (http://localhost:5173/src/app/components/ui/dialog.tsx:22:6)
+    at AddKidDialog (http://localhost:5173/src/app/screens/parent/FamilyMembers.tsx:40:25)
+    at div
+    at FamilyMembers (http://localhost:5173/src/app/screens/parent/FamilyMembers.tsx:195:34)
+    at div
+    at main
+    at div
+    at ParentHome (http://localhost:5173/src/app/screens/parent/ParentHome.tsx:35:30)
+    at AppContent (http://localhost:5173/src/app/App.tsx:32:50)
+    at DataProvider (http://localhost:5173/src/app/context/DataContext.tsx:28:32)
+    at ProfileProvider (http://localhost:5173/src/app/context/ProfileContext.tsx:24:35)
+    at AuthProvider (http://localhost:5173/src/app/context/AuthContext.tsx:25:32)
+    at AppProviders (http://localhost:5173/src/app/providers/AppProviders.tsx:20:32)
+    at App @ http://localhost:5173/node_modules/.vite/deps/chunk-BH4GTE34.js?v=42fc7b8a:520
+[   21308ms] [WARNING] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}. @ http://localhost:5173/node_modules/.vite/deps/chunk-AKERV6A2.js?v=42fc7b8a:1418
+[  131451ms] [ERROR] Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?%s%s 
+
+Check the render method of `SlotClone`. 
+    at Badge (http://localhost:5173/src/app/components/ui/badge.tsx:37:3)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-QKMCK2GX.js?v=42fc7b8a:73:11
+    at http://localhost:5173/node_modules/.vite/deps/chunk-QKMCK2GX.js?v=42fc7b8a:54:11
+    at http://localhost:5173/node_modules/.vite/deps/chunk-K43W7Y6M.js?v=42fc7b8a:41:13
+    at http://localhost:5173/node_modules/.vite/deps/chunk-QKMCK2GX.js?v=42fc7b8a:73:11
+    at http://localhost:5173/node_modules/.vite/deps/chunk-QKMCK2GX.js?v=42fc7b8a:54:11
+    at http://localhost:5173/node_modules/.vite/deps/chunk-K43W7Y6M.js?v=42fc7b8a:41:13
+    at http://localhost:5173/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=39095d12:2018:13
+    at http://localhost:5173/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=39095d12:2452:13
+    at TooltipTrigger (http://localhost:5173/src/app/components/ui/tooltip.tsx:57:6)
+    at Provider (http://localhost:5173/node_modules/.vite/deps/chunk-AKFJ564R.js?v=42fc7b8a:38:15)
+    at Provider (http://localhost:5173/node_modules/.vite/deps/chunk-AKFJ564R.js?v=42fc7b8a:38:15)
+    at Popper (http://localhost:5173/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=39095d12:2010:11)
+    at Tooltip (http://localhost:5173/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=39095d12:2361:5)
+    at Provider (http://localhost:5173/node_modules/.vite/deps/chunk-AKFJ564R.js?v=42fc7b8a:38:15)
+    at TooltipProvider (http://localhost:5173/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=39095d12:2317:5)
+    at TooltipProvider (http://localhost:5173/src/app/components/ui/tooltip.tsx:21:3)
+    at Tooltip (http://localhost:5173/src/app/components/ui/tooltip.tsx:43:6)
+    at Provider (http://localhost:5173/node_modules/.vite/deps/chunk-AKFJ564R.js?v=42fc7b8a:38:15)
+    at TooltipProvider (http://localhost:5173/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=39095d12:2317:5)
+    at TooltipProvider (http://localhost:5173/src/app/components/ui/tooltip.tsx:21:3)
+    at StreakBadge (http://localhost:5173/src/app/components/StreakBadge.tsx:21:3)
+    at div
+    at div
+    at header
+    at div
+    at KidHome (http://localhost:5173/src/app/screens/kid/KidHome.tsx:36:30)
+    at AppContent (http://localhost:5173/src/app/App.tsx:32:50)
+    at DataProvider (http://localhost:5173/src/app/context/DataContext.tsx:28:32)
+    at ProfileProvider (http://localhost:5173/src/app/context/ProfileContext.tsx:24:35)
+    at AuthProvider (http://localhost:5173/src/app/context/AuthContext.tsx:25:32)
+    at AppProviders (http://localhost:5173/src/app/providers/AppProviders.tsx:20:32)
+    at App @ http://localhost:5173/node_modules/.vite/deps/chunk-BH4GTE34.js?v=42fc7b8a:520
+[  154745ms] [WARNING] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}. @ http://localhost:5173/node_modules/.vite/deps/chunk-AKERV6A2.js?v=42fc7b8a:1418
+[  335964ms] [WARNING] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}. @ http://localhost:5173/node_modules/.vite/deps/chunk-AKERV6A2.js?v=42fc7b8a:1418
+[  654111ms] [ERROR] [vite] ReferenceError: getFirestore is not defined
+    at http://localhost:5173/src/lib/firebase.ts?t=1781129314974:14:12 @ http://localhost:5173/@vite/client:881
+[  654111ms] [ERROR] [vite] Failed to reload /src/app/context/AuthContext.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  654113ms] [ERROR] [vite] ReferenceError: getFirestore is not defined
+    at http://localhost:5173/src/lib/firebase.ts?t=1781129314974:14:12 @ http://localhost:5173/@vite/client:881
+[  654114ms] [ERROR] [vite] Failed to reload /src/app/context/ProfileContext.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  654114ms] [ERROR] [vite] ReferenceError: getFirestore is not defined
+    at http://localhost:5173/src/lib/firebase.ts?t=1781129314974:14:12 @ http://localhost:5173/@vite/client:881
+[  654114ms] [ERROR] [vite] Failed to reload /src/app/screens/parent/ActivityFormDialog.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  654114ms] [ERROR] [vite] ReferenceError: getFirestore is not defined
+    at http://localhost:5173/src/lib/firebase.ts?t=1781129314974:14:12 @ http://localhost:5173/@vite/client:881
+[  654114ms] [ERROR] [vite] Failed to reload /src/app/screens/kid/SubmitCompletionDialog.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  654115ms] [ERROR] [vite] ReferenceError: getFirestore is not defined
+    at http://localhost:5173/src/lib/firebase.ts?t=1781129314974:14:12 @ http://localhost:5173/@vite/client:881
+[  654115ms] [ERROR] [vite] Failed to reload /src/app/screens/parent/RewardFormDialog.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  654116ms] [ERROR] [vite] ReferenceError: getFirestore is not defined
+    at http://localhost:5173/src/lib/firebase.ts?t=1781129314974:14:12 @ http://localhost:5173/@vite/client:881
+[  654116ms] [ERROR] [vite] Failed to reload /src/app/screens/kid/RedeemDialog.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  654116ms] [ERROR] [vite] ReferenceError: getFirestore is not defined
+    at http://localhost:5173/src/lib/firebase.ts?t=1781129314974:14:12 @ http://localhost:5173/@vite/client:881
+[  654117ms] [ERROR] [vite] Failed to reload /src/app/screens/kid/NegotiationLauncher.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  654117ms] [ERROR] [vite] ReferenceError: getFirestore is not defined
+    at http://localhost:5173/src/lib/firebase.ts?t=1781129314974:14:12 @ http://localhost:5173/@vite/client:881
+[  654117ms] [ERROR] [vite] Failed to reload /src/app/components/NegotiationThreadView.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  654118ms] [ERROR] [vite] ReferenceError: getFirestore is not defined
+    at http://localhost:5173/src/lib/firebase.ts?t=1781129314974:14:12 @ http://localhost:5173/@vite/client:881
+[  654118ms] [ERROR] [vite] Failed to reload /src/app/screens/parent/FamilyMembers.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  654118ms] [ERROR] [vite] ReferenceError: getFirestore is not defined
+    at http://localhost:5173/src/lib/firebase.ts?t=1781129314974:14:12 @ http://localhost:5173/@vite/client:881
+[  654118ms] [ERROR] [vite] Failed to reload /src/app/components/SessionButton.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  654118ms] [ERROR] [vite] ReferenceError: getFirestore is not defined
+    at http://localhost:5173/src/lib/firebase.ts?t=1781129314974:14:12 @ http://localhost:5173/@vite/client:881
+[  654118ms] [ERROR] [vite] Failed to reload /src/app/screens/AuthGate.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  654119ms] [ERROR] [vite] ReferenceError: getFirestore is not defined
+    at http://localhost:5173/src/lib/firebase.ts?t=1781129314974:14:12 @ http://localhost:5173/@vite/client:881
+[  654119ms] [ERROR] [vite] Failed to reload /src/app/context/DataContext.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  654119ms] [ERROR] [vite] ReferenceError: getFirestore is not defined
+    at http://localhost:5173/src/lib/firebase.ts?t=1781129314974:14:12 @ http://localhost:5173/@vite/client:881
+[  654119ms] [ERROR] [vite] Failed to reload /src/app/components/EntryComposerDialog.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  654119ms] [ERROR] [vite] ReferenceError: getFirestore is not defined
+    at http://localhost:5173/src/lib/firebase.ts?t=1781129314974:14:12 @ http://localhost:5173/@vite/client:881
+[  654119ms] [ERROR] [vite] Failed to reload /src/app/components/GrowthEntryCard.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  654119ms] [ERROR] [vite] ReferenceError: getFirestore is not defined
+    at http://localhost:5173/src/lib/firebase.ts?t=1781129314974:14:12 @ http://localhost:5173/@vite/client:881
+[  654119ms] [ERROR] [vite] Failed to reload /src/app/screens/parent/ApprovalInbox.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  654119ms] [ERROR] [vite] ReferenceError: getFirestore is not defined
+    at http://localhost:5173/src/lib/firebase.ts?t=1781129314974:14:12 @ http://localhost:5173/@vite/client:881
+[  654119ms] [ERROR] [vite] Failed to reload /src/app/screens/parent/FulfillmentInbox.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  654119ms] [ERROR] [vite] ReferenceError: getFirestore is not defined
+    at http://localhost:5173/src/lib/firebase.ts?t=1781129314974:14:12 @ http://localhost:5173/@vite/client:881
+[  654119ms] [ERROR] [vite] Failed to reload /src/app/components/TrashBinDialog.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  654119ms] [ERROR] [vite] ReferenceError: getFirestore is not defined
+    at http://localhost:5173/src/lib/firebase.ts?t=1781129314974:14:12 @ http://localhost:5173/@vite/client:881
+[  654119ms] [ERROR] [vite] Failed to reload /src/app/screens/parent/RewardManager.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  654119ms] [ERROR] [vite] ReferenceError: getFirestore is not defined
+    at http://localhost:5173/src/lib/firebase.ts?t=1781129314974:14:12 @ http://localhost:5173/@vite/client:881
+[  654119ms] [ERROR] [vite] Failed to reload /src/app/components/PhotoLightbox.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  654119ms] [ERROR] [vite] ReferenceError: getFirestore is not defined
+    at http://localhost:5173/src/lib/firebase.ts?t=1781129314974:14:12 @ http://localhost:5173/@vite/client:881
+[  654119ms] [ERROR] [vite] Failed to reload /src/app/screens/kid/Wishlist.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  654119ms] [ERROR] [vite] ReferenceError: getFirestore is not defined
+    at http://localhost:5173/src/lib/firebase.ts?t=1781129314974:14:12 @ http://localhost:5173/@vite/client:881
+[  654119ms] [ERROR] [vite] Failed to reload /src/app/components/PhotoUploader.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  654119ms] [ERROR] [vite] ReferenceError: getFirestore is not defined
+    at http://localhost:5173/src/lib/firebase.ts?t=1781129314974:14:12 @ http://localhost:5173/@vite/client:881
+[  654119ms] [ERROR] [vite] Failed to reload /src/app/screens/parent/ActivityManager.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  654136ms] [ERROR] [vite] ReferenceError: getFirestore is not defined
+    at http://localhost:5173/src/lib/firebase.ts?t=1781129314974:14:12 @ http://localhost:5173/@vite/client:881
+[  654136ms] [ERROR] [vite] Failed to reload /src/app/App.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  656594ms] [ERROR] [vite] FirebaseError: initializeFirestore() has already been called with different options. To avoid this error, call initializeFirestore() with the same options as when it was originally called, or call getFirestore() to return the already initialized instance. @ http://localhost:5173/@vite/client:881
+[  656594ms] [ERROR] [vite] Failed to reload /src/app/context/AuthContext.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  656596ms] [ERROR] [vite] FirebaseError: initializeFirestore() has already been called with different options. To avoid this error, call initializeFirestore() with the same options as when it was originally called, or call getFirestore() to return the already initialized instance. @ http://localhost:5173/@vite/client:881
+[  656596ms] [ERROR] [vite] Failed to reload /src/app/context/ProfileContext.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  656597ms] [ERROR] [vite] FirebaseError: initializeFirestore() has already been called with different options. To avoid this error, call initializeFirestore() with the same options as when it was originally called, or call getFirestore() to return the already initialized instance. @ http://localhost:5173/@vite/client:881
+[  656597ms] [ERROR] [vite] Failed to reload /src/app/screens/parent/ActivityFormDialog.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  656598ms] [ERROR] [vite] FirebaseError: initializeFirestore() has already been called with different options. To avoid this error, call initializeFirestore() with the same options as when it was originally called, or call getFirestore() to return the already initialized instance. @ http://localhost:5173/@vite/client:881
+[  656598ms] [ERROR] [vite] Failed to reload /src/app/screens/kid/SubmitCompletionDialog.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  656598ms] [ERROR] [vite] FirebaseError: initializeFirestore() has already been called with different options. To avoid this error, call initializeFirestore() with the same options as when it was originally called, or call getFirestore() to return the already initialized instance. @ http://localhost:5173/@vite/client:881
+[  656598ms] [ERROR] [vite] Failed to reload /src/app/screens/parent/RewardFormDialog.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  656599ms] [ERROR] [vite] FirebaseError: initializeFirestore() has already been called with different options. To avoid this error, call initializeFirestore() with the same options as when it was originally called, or call getFirestore() to return the already initialized instance. @ http://localhost:5173/@vite/client:881
+[  656599ms] [ERROR] [vite] Failed to reload /src/app/screens/kid/RedeemDialog.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  656600ms] [ERROR] [vite] FirebaseError: initializeFirestore() has already been called with different options. To avoid this error, call initializeFirestore() with the same options as when it was originally called, or call getFirestore() to return the already initialized instance. @ http://localhost:5173/@vite/client:881
+[  656600ms] [ERROR] [vite] Failed to reload /src/app/components/NegotiationThreadView.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  656601ms] [ERROR] [vite] FirebaseError: initializeFirestore() has already been called with different options. To avoid this error, call initializeFirestore() with the same options as when it was originally called, or call getFirestore() to return the already initialized instance. @ http://localhost:5173/@vite/client:881
+[  656601ms] [ERROR] [vite] Failed to reload /src/app/screens/kid/NegotiationLauncher.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  656601ms] [ERROR] [vite] FirebaseError: initializeFirestore() has already been called with different options. To avoid this error, call initializeFirestore() with the same options as when it was originally called, or call getFirestore() to return the already initialized instance. @ http://localhost:5173/@vite/client:881
+[  656602ms] [ERROR] [vite] Failed to reload /src/app/components/SessionButton.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  656602ms] [ERROR] [vite] FirebaseError: initializeFirestore() has already been called with different options. To avoid this error, call initializeFirestore() with the same options as when it was originally called, or call getFirestore() to return the already initialized instance. @ http://localhost:5173/@vite/client:881
+[  656602ms] [ERROR] [vite] Failed to reload /src/app/screens/parent/FamilyMembers.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  656602ms] [ERROR] [vite] FirebaseError: initializeFirestore() has already been called with different options. To avoid this error, call initializeFirestore() with the same options as when it was originally called, or call getFirestore() to return the already initialized instance. @ http://localhost:5173/@vite/client:881
+[  656602ms] [ERROR] [vite] Failed to reload /src/app/screens/AuthGate.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  656603ms] [ERROR] [vite] FirebaseError: initializeFirestore() has already been called with different options. To avoid this error, call initializeFirestore() with the same options as when it was originally called, or call getFirestore() to return the already initialized instance. @ http://localhost:5173/@vite/client:881
+[  656603ms] [ERROR] [vite] Failed to reload /src/app/components/GrowthEntryCard.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  656604ms] [ERROR] [vite] FirebaseError: initializeFirestore() has already been called with different options. To avoid this error, call initializeFirestore() with the same options as when it was originally called, or call getFirestore() to return the already initialized instance. @ http://localhost:5173/@vite/client:881
+[  656604ms] [ERROR] [vite] Failed to reload /src/app/components/PhotoLightbox.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  656604ms] [ERROR] [vite] FirebaseError: initializeFirestore() has already been called with different options. To avoid this error, call initializeFirestore() with the same options as when it was originally called, or call getFirestore() to return the already initialized instance. @ http://localhost:5173/@vite/client:881
+[  656604ms] [ERROR] [vite] Failed to reload /src/app/screens/kid/Wishlist.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  656604ms] [ERROR] [vite] FirebaseError: initializeFirestore() has already been called with different options. To avoid this error, call initializeFirestore() with the same options as when it was originally called, or call getFirestore() to return the already initialized instance. @ http://localhost:5173/@vite/client:881
+[  656604ms] [ERROR] [vite] Failed to reload /src/app/components/PhotoUploader.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  656604ms] [ERROR] [vite] FirebaseError: initializeFirestore() has already been called with different options. To avoid this error, call initializeFirestore() with the same options as when it was originally called, or call getFirestore() to return the already initialized instance. @ http://localhost:5173/@vite/client:881
+[  656604ms] [ERROR] [vite] Failed to reload /src/app/screens/parent/FulfillmentInbox.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  656604ms] [ERROR] [vite] FirebaseError: initializeFirestore() has already been called with different options. To avoid this error, call initializeFirestore() with the same options as when it was originally called, or call getFirestore() to return the already initialized instance. @ http://localhost:5173/@vite/client:881
+[  656604ms] [ERROR] [vite] Failed to reload /src/app/screens/parent/RewardManager.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  656604ms] [ERROR] [vite] FirebaseError: initializeFirestore() has already been called with different options. To avoid this error, call initializeFirestore() with the same options as when it was originally called, or call getFirestore() to return the already initialized instance. @ http://localhost:5173/@vite/client:881
+[  656604ms] [ERROR] [vite] Failed to reload /src/app/context/DataContext.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  656604ms] [ERROR] [vite] FirebaseError: initializeFirestore() has already been called with different options. To avoid this error, call initializeFirestore() with the same options as when it was originally called, or call getFirestore() to return the already initialized instance. @ http://localhost:5173/@vite/client:881
+[  656604ms] [ERROR] [vite] Failed to reload /src/app/components/TrashBinDialog.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  656604ms] [ERROR] [vite] FirebaseError: initializeFirestore() has already been called with different options. To avoid this error, call initializeFirestore() with the same options as when it was originally called, or call getFirestore() to return the already initialized instance. @ http://localhost:5173/@vite/client:881
+[  656604ms] [ERROR] [vite] Failed to reload /src/app/screens/parent/ActivityManager.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  656606ms] [ERROR] [vite] FirebaseError: initializeFirestore() has already been called with different options. To avoid this error, call initializeFirestore() with the same options as when it was originally called, or call getFirestore() to return the already initialized instance. @ http://localhost:5173/@vite/client:881
+[  656606ms] [ERROR] [vite] Failed to reload /src/app/screens/parent/ApprovalInbox.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  656606ms] [ERROR] [vite] FirebaseError: initializeFirestore() has already been called with different options. To avoid this error, call initializeFirestore() with the same options as when it was originally called, or call getFirestore() to return the already initialized instance. @ http://localhost:5173/@vite/client:881
+[  656606ms] [ERROR] [vite] Failed to reload /src/app/components/EntryComposerDialog.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  656627ms] [ERROR] [vite] FirebaseError: initializeFirestore() has already been called with different options. To avoid this error, call initializeFirestore() with the same options as when it was originally called, or call getFirestore() to return the already initialized instance. @ http://localhost:5173/@vite/client:881
+[  656627ms] [ERROR] [vite] Failed to reload /src/app/App.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881

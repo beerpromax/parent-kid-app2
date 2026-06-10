@@ -1,0 +1,155 @@
+- generic [ref=e2]:
+  - generic [ref=e916]:
+    - banner [ref=e917]:
+      - generic [ref=e918]:
+        - generic [ref=e919]:
+          - img [ref=e920]
+          - heading "Family Portal" [level=1] [ref=e922]
+        - generic [ref=e923]:
+          - generic [ref=e924]:
+            - generic [ref=e926]: 👑
+            - generic [ref=e927]: Parent
+          - button "Sign Out" [ref=e928] [cursor=pointer]:
+            - img
+            - generic [ref=e929]: Sign Out
+    - main [ref=e930]:
+      - generic [ref=e931]:
+        - button "Activities" [ref=e932] [cursor=pointer]:
+          - img [ref=e933]
+          - text: Activities
+        - button "Approvals" [ref=e936] [cursor=pointer]:
+          - img [ref=e937]
+          - generic [ref=e940]: Approvals
+        - button "Rewards" [ref=e941] [cursor=pointer]:
+          - img [ref=e942]
+          - generic [ref=e946]: Rewards
+        - button "Fulfillments" [ref=e947] [cursor=pointer]:
+          - img [ref=e948]
+          - generic [ref=e951]: Fulfillments
+        - button "Negotiations" [ref=e952] [cursor=pointer]:
+          - img [ref=e953]
+          - generic [ref=e955]: Negotiations
+        - button "Journey" [ref=e956] [cursor=pointer]:
+          - img [ref=e957]
+          - text: Journey
+        - button "Dashboard" [ref=e959] [cursor=pointer]:
+          - img [ref=e960]
+          - text: Dashboard
+        - button "Family" [ref=e965] [cursor=pointer]:
+          - img [ref=e966]
+          - text: Family
+      - generic [ref=e970]:
+        - generic [ref=e971]:
+          - generic [ref=e972]:
+            - heading "Activities" [level=2] [ref=e973]
+            - paragraph [ref=e974]: Create and manage tasks for kids to complete
+          - button "Add Activity" [ref=e975] [cursor=pointer]:
+            - img
+            - text: Add Activity
+        - generic [ref=e976]:
+          - generic [ref=e977]:
+            - generic [ref=e978]:
+              - generic [ref=e979]:
+                - heading "Read for 30 minutes" [level=4] [ref=e980]:
+                  - generic [ref=e981]: Read for 30 minutes
+                - generic [ref=e982]:
+                  - img [ref=e983]
+                  - generic [ref=e986]: 30 min
+              - generic [ref=e987]:
+                - img
+                - generic [ref=e988]: "8"
+            - generic [ref=e989]:
+              - paragraph [ref=e990]: Read a book of your choice
+              - generic [ref=e991]:
+                - generic [ref=e992]:
+                  - img [ref=e993]
+                  - generic [ref=e998]: "Assigned:"
+                - generic [ref=e1000]: All Kids
+            - generic [ref=e1004]:
+              - button "Edit" [ref=e1005] [cursor=pointer]:
+                - img
+                - text: Edit
+              - button "Archive" [ref=e1006] [cursor=pointer]:
+                - img
+                - text: Archive
+          - generic [ref=e1007]:
+            - generic [ref=e1008]:
+              - generic [ref=e1009]:
+                - heading "Homework time" [level=4] [ref=e1010]:
+                  - generic [ref=e1011]: Homework time
+                - generic [ref=e1012]:
+                  - img [ref=e1013]
+                  - generic [ref=e1016]: 45 min
+              - generic [ref=e1017]:
+                - img
+                - generic [ref=e1018]: "15"
+            - generic [ref=e1019]:
+              - paragraph [ref=e1020]: Complete all homework assignments
+              - generic [ref=e1021]:
+                - generic [ref=e1022]:
+                  - img [ref=e1023]
+                  - generic [ref=e1028]: "Assigned:"
+                - generic [ref=e1030]: All Kids
+            - generic [ref=e1034]:
+              - button "Edit" [ref=e1035] [cursor=pointer]:
+                - img
+                - text: Edit
+              - button "Archive" [ref=e1036] [cursor=pointer]:
+                - img
+                - text: Archive
+          - generic [ref=e1037]:
+            - generic [ref=e1038]:
+              - generic [ref=e1039]:
+                - heading "Help with dishes" [level=4] [ref=e1040]:
+                  - generic [ref=e1041]: Help with dishes
+                - generic [ref=e1042]:
+                  - img [ref=e1043]
+                  - generic [ref=e1046]: 15 min
+              - generic [ref=e1047]:
+                - img
+                - generic [ref=e1048]: "5"
+            - generic [ref=e1049]:
+              - paragraph [ref=e1050]: Clear table and load dishwasher
+              - generic [ref=e1051]:
+                - generic [ref=e1052]:
+                  - img [ref=e1053]
+                  - generic [ref=e1058]: "Assigned:"
+                - generic [ref=e1060]: All Kids
+            - generic [ref=e1064]:
+              - button "Edit" [ref=e1065] [cursor=pointer]:
+                - img
+                - text: Edit
+              - button "Archive" [ref=e1066] [cursor=pointer]:
+                - img
+                - text: Archive
+          - generic [ref=e1067]:
+            - generic [ref=e1068]:
+              - generic [ref=e1069]:
+                - heading "Clean your room" [level=4] [ref=e1070]:
+                  - generic [ref=e1071]: Clean your room
+                - generic [ref=e1072]:
+                  - img [ref=e1073]
+                  - generic [ref=e1076]: 20 min
+              - generic [ref=e1077]:
+                - img
+                - generic [ref=e1078]: "10"
+            - generic [ref=e1079]:
+              - paragraph [ref=e1080]: Make bed, organize toys, vacuum floor
+              - generic [ref=e1081]:
+                - generic [ref=e1082]:
+                  - img [ref=e1083]
+                  - generic [ref=e1088]: "Assigned:"
+                - generic [ref=e1090]: All Kids
+            - generic [ref=e1094]:
+              - button "Edit" [ref=e1095] [cursor=pointer]:
+                - img
+                - text: Edit
+              - button "Archive" [ref=e1096] [cursor=pointer]:
+                - img
+                - text: Archive
+  - region "Notifications alt+T":
+    - list:
+      - listitem [ref=e1097]:
+        - img [ref=e1099]
+        - generic [ref=e1102]: Approved! +5 tokens to Mia
+        - button "Add to Journey" [ref=e1103] [cursor=pointer]

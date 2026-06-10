@@ -1,0 +1,70 @@
+- generic [ref=e2]:
+  - generic [ref=e1465]:
+    - banner [ref=e1466]:
+      - generic [ref=e1467]:
+        - generic [ref=e1468]:
+          - img [ref=e1469]
+          - heading "Family Portal" [level=1] [ref=e1471]
+        - generic [ref=e1472]:
+          - generic [ref=e1473]:
+            - generic [ref=e1475]: 👑
+            - generic [ref=e1476]: Parent
+          - button "Sign Out" [ref=e1477] [cursor=pointer]:
+            - img
+            - generic [ref=e1478]: Sign Out
+    - main [ref=e1479]:
+      - generic [ref=e1480]:
+        - button "Activities" [ref=e1481] [cursor=pointer]:
+          - img [ref=e1482]
+          - text: Activities
+        - button "Approvals" [ref=e1485] [cursor=pointer]:
+          - img [ref=e1486]
+          - generic [ref=e1489]: Approvals
+        - button "Rewards" [ref=e1490] [cursor=pointer]:
+          - img [ref=e1491]
+          - generic [ref=e1495]: Rewards
+        - button "Fulfillments" [ref=e1496] [cursor=pointer]:
+          - img [ref=e1497]
+          - generic [ref=e1500]: Fulfillments
+        - button "Negotiations" [ref=e1708] [cursor=pointer]:
+          - img [ref=e1502]
+          - generic [ref=e1504]: Negotiations
+        - button "Journey" [active] [ref=e1506] [cursor=pointer]:
+          - img [ref=e1507]
+          - text: Journey
+        - button "Dashboard" [ref=e1509] [cursor=pointer]:
+          - img [ref=e1510]
+          - text: Dashboard
+        - button "Family" [ref=e1515] [cursor=pointer]:
+          - img [ref=e1516]
+          - text: Family
+      - generic [ref=e1721]:
+        - generic [ref=e1722]:
+          - generic [ref=e1723]:
+            - heading "Growth Journeys" [level=2] [ref=e1724]
+            - paragraph [ref=e1725]: Follow and document each child's learning history and achievements
+          - generic [ref=e1726]:
+            - generic [ref=e1727]:
+              - img [ref=e1728]
+              - text: No moods logged
+            - button "Trash" [ref=e1731] [cursor=pointer]:
+              - img
+              - generic [ref=e1732]: Trash
+            - button "Add Entry" [ref=e1733] [cursor=pointer]:
+              - img
+              - text: Add Entry
+        - button "👧 Mia" [ref=e1735] [cursor=pointer]:
+          - generic [ref=e1736]: 👧
+          - generic [ref=e1737]: Mia
+        - generic [ref=e1738]:
+          - generic [ref=e1740]:
+            - heading "Timeline Filters" [level=4] [ref=e1741]:
+              - img [ref=e1742]
+              - text: Timeline Filters
+            - button "Show Filters" [ref=e1745] [cursor=pointer]
+          - generic [ref=e1746]:
+            - img [ref=e1748]
+            - heading "Your Journey Log is empty" [level=3] [ref=e1750]
+            - paragraph [ref=e1751]: Capture milestones, learning activities, or fun family moments here!
+            - button "Add First Entry" [ref=e1752]
+  - region "Notifications alt+T"

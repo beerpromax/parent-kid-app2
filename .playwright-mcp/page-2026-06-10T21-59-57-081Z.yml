@@ -1,0 +1,143 @@
+- generic [ref=e2]:
+  - generic [ref=e491]:
+    - banner [ref=e492]:
+      - generic [ref=e493]:
+        - generic [ref=e494]:
+          - img [ref=e495]
+          - heading "Kid Zone" [level=1] [ref=e497]
+        - generic [ref=e498]:
+          - generic [ref=e499]:
+            - img
+            - generic [ref=e500]: 0 Days
+          - generic [ref=e501]:
+            - generic [ref=e503]: 👧
+            - generic [ref=e504]: Mia
+          - generic [ref=e505]:
+            - img
+            - generic [ref=e506]: "0"
+          - button "Sign Out" [ref=e507] [cursor=pointer]:
+            - img
+            - generic [ref=e508]: Sign Out
+    - main [ref=e509]:
+      - generic [ref=e510]:
+        - button "My Activities" [ref=e511] [cursor=pointer]:
+          - img [ref=e512]
+          - text: My Activities
+        - button "My Wallet" [ref=e515] [cursor=pointer]:
+          - img [ref=e516]
+          - text: My Wallet
+        - button "Rewards" [ref=e519] [cursor=pointer]:
+          - img [ref=e520]
+          - text: Rewards
+        - button "Negotiations" [ref=e524] [cursor=pointer]:
+          - img [ref=e525]
+          - generic [ref=e527]: Negotiations
+        - button "My Journey" [ref=e528] [cursor=pointer]:
+          - img [ref=e529]
+          - generic [ref=e531]: My Journey
+      - generic [ref=e533]:
+        - generic [ref=e534]:
+          - heading "Available Activities" [level=2] [ref=e535]
+          - paragraph [ref=e536]: Complete tasks assigned to you to earn tokens!
+        - generic [ref=e537]:
+          - generic [ref=e538]:
+            - generic [ref=e539]:
+              - generic [ref=e540]:
+                - heading "Read for 30 minutes" [level=4] [ref=e541]:
+                  - generic [ref=e542]: Read for 30 minutes
+                - generic [ref=e543]:
+                  - img [ref=e544]
+                  - generic [ref=e547]: 30 min
+              - generic [ref=e548]:
+                - img
+                - generic [ref=e549]: "8"
+            - generic [ref=e550]:
+              - paragraph [ref=e551]: Read a book of your choice
+              - generic [ref=e552]:
+                - generic [ref=e553]:
+                  - img [ref=e554]
+                  - generic [ref=e559]: "Assigned:"
+                - generic [ref=e561]: All Kids
+            - generic [ref=e565]:
+              - button "Negotiate" [ref=e566] [cursor=pointer]:
+                - img
+                - text: Negotiate
+              - button "Mark Complete" [ref=e568] [cursor=pointer]:
+                - img
+                - text: Mark Complete
+          - generic [ref=e569]:
+            - generic [ref=e570]:
+              - generic [ref=e571]:
+                - heading "Homework time" [level=4] [ref=e572]:
+                  - generic [ref=e573]: Homework time
+                - generic [ref=e574]:
+                  - img [ref=e575]
+                  - generic [ref=e578]: 45 min
+              - generic [ref=e579]:
+                - img
+                - generic [ref=e580]: "15"
+            - generic [ref=e581]:
+              - paragraph [ref=e582]: Complete all homework assignments
+              - generic [ref=e583]:
+                - generic [ref=e584]:
+                  - img [ref=e585]
+                  - generic [ref=e590]: "Assigned:"
+                - generic [ref=e592]: All Kids
+            - generic [ref=e596]:
+              - button "Negotiate" [ref=e597] [cursor=pointer]:
+                - img
+                - text: Negotiate
+              - button "Mark Complete" [ref=e599] [cursor=pointer]:
+                - img
+                - text: Mark Complete
+          - generic [ref=e600]:
+            - generic [ref=e601]:
+              - generic [ref=e602]:
+                - heading "Help with dishes" [level=4] [ref=e603]:
+                  - generic [ref=e604]: Help with dishes
+                - generic [ref=e605]:
+                  - img [ref=e606]
+                  - generic [ref=e609]: 15 min
+              - generic [ref=e610]:
+                - img
+                - generic [ref=e611]: "5"
+            - generic [ref=e612]:
+              - paragraph [ref=e613]: Clear table and load dishwasher
+              - generic [ref=e614]:
+                - generic [ref=e615]:
+                  - img [ref=e616]
+                  - generic [ref=e621]: "Assigned:"
+                - generic [ref=e623]: All Kids
+            - generic [ref=e627]:
+              - button "Negotiate" [ref=e628] [cursor=pointer]:
+                - img
+                - text: Negotiate
+              - button "Mark Complete" [ref=e630] [cursor=pointer]:
+                - img
+                - text: Mark Complete
+          - generic [ref=e631]:
+            - generic [ref=e632]:
+              - generic [ref=e633]:
+                - heading "Clean your room" [level=4] [ref=e634]:
+                  - generic [ref=e635]: Clean your room
+                - generic [ref=e636]:
+                  - img [ref=e637]
+                  - generic [ref=e640]: 20 min
+              - generic [ref=e641]:
+                - img
+                - generic [ref=e642]: "10"
+            - generic [ref=e643]:
+              - paragraph [ref=e644]: Make bed, organize toys, vacuum floor
+              - generic [ref=e645]:
+                - generic [ref=e646]:
+                  - img [ref=e647]
+                  - generic [ref=e652]: "Assigned:"
+                - generic [ref=e654]: All Kids
+            - generic [ref=e658]:
+              - button "Negotiate" [ref=e659] [cursor=pointer]:
+                - img
+                - text: Negotiate
+              - button "Mark Complete" [ref=e661] [cursor=pointer]:
+                - img
+                - text: Mark Complete
+  - region "Notifications alt+T"

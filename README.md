@@ -9,7 +9,8 @@ A family app where kids earn **tokens** by completing chores and activities, spe
 ├─ PHASE1_DEV_PLAN.md  Phase 1: activities, completions, tokens (core loop)
 ├─ PHASE2_DEV_PLAN.md  Phase 2: rewards, redemptions, negotiation, streaks
 ├─ PHASE3_DEV_PLAN.md  Phase 3: growth journey log, photos, mood tags
-├─ webapp/             React + Vite web application (all three phases built)
+├─ PHASE4_DEV_PLAN.md  Phase 4: Firebase Auth, invites, security rules, go-live
+├─ webapp/             React + Vite web application (all four phases built)
 ├─ androidapp/         Android app (placeholder — not started)
 └─ iosapp/             iOS app (placeholder — not started)
 ```
@@ -38,12 +39,14 @@ Runtime configuration comes from `webapp/.env.local` (not committed — see `web
 
 - All data access goes through repositories in `webapp/src/lib/repos/` — screens and components never call Firestore directly.
 - Every repo is dual-backend: a localStorage branch (for offline prototyping) and a Firestore branch with transactional integrity guarantees (idempotent approvals, balance guards, negotiation invariants).
+- **Auth model (Phase 4):** per-member email/password accounts. A parent signs up and creates the family; kids join by claiming a single-use invite code (generated in the parent's Family tab) with a username + password. Each auth account is bound 1:1 to a profile via `users/{uid}`; Firestore security rules scope all data to family members and restrict approvals/fulfillments to parents.
 - See `webapp/PROJECT_GUIDE.md` and the phase plans for design decisions and verification checklists.
 
 ## Status
 
-- ✅ Phases 1–3 implemented and verified against the localStorage backend
-- 🔜 Firestore go-live: real Firebase project, auth, production security rules
+- ✅ Phases 1–3 implemented; verified against localStorage **and** live Firestore
+- ✅ Phase 4: Firebase Auth + parent-invites-kid flow + production security rules, deployed to project `parent-kid-app2` and verified live (including rules negative-tests)
+- ⏸ Photos/Storage deferred (needs Blaze plan) — uploader is hidden in live mode (`VITE_ENABLE_PHOTOS`)
 - ⛔ Mobile apps not started
 
-> **Privacy note:** until real authentication and locked-down security rules are in place, do not deploy publicly or upload real photos of children.
+> **Privacy note:** photo uploads stay disabled until Firebase Storage is set up with locked-down Storage rules (tracked in PHASE4_DEV_PLAN §7).

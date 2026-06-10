@@ -1,0 +1,151 @@
+- generic [ref=e2]:
+  - generic [ref=e711]:
+    - banner [ref=e712]:
+      - generic [ref=e713]:
+        - generic [ref=e714]:
+          - img [ref=e715]
+          - heading "Family Portal" [level=1] [ref=e717]
+        - generic [ref=e718]:
+          - generic [ref=e719]:
+            - generic [ref=e721]: 👑
+            - generic [ref=e722]: Parent
+          - button "Sign Out" [ref=e723] [cursor=pointer]:
+            - img
+            - generic [ref=e724]: Sign Out
+    - main [ref=e725]:
+      - generic [ref=e726]:
+        - button "Activities" [ref=e727] [cursor=pointer]:
+          - img [ref=e728]
+          - text: Activities
+        - button "Approvals 1" [ref=e731] [cursor=pointer]:
+          - img [ref=e732]
+          - generic [ref=e735]: Approvals
+          - generic [ref=e736]: "1"
+        - button "Rewards" [ref=e737] [cursor=pointer]:
+          - img [ref=e738]
+          - generic [ref=e742]: Rewards
+        - button "Fulfillments" [ref=e743] [cursor=pointer]:
+          - img [ref=e744]
+          - generic [ref=e747]: Fulfillments
+        - button "Negotiations" [ref=e748] [cursor=pointer]:
+          - img [ref=e749]
+          - generic [ref=e751]: Negotiations
+        - button "Journey" [ref=e752] [cursor=pointer]:
+          - img [ref=e753]
+          - text: Journey
+        - button "Dashboard" [ref=e755] [cursor=pointer]:
+          - img [ref=e756]
+          - text: Dashboard
+        - button "Family" [ref=e761] [cursor=pointer]:
+          - img [ref=e762]
+          - text: Family
+      - generic [ref=e766]:
+        - generic [ref=e767]:
+          - generic [ref=e768]:
+            - heading "Activities" [level=2] [ref=e769]
+            - paragraph [ref=e770]: Create and manage tasks for kids to complete
+          - button "Add Activity" [ref=e771] [cursor=pointer]:
+            - img
+            - text: Add Activity
+        - generic [ref=e772]:
+          - generic [ref=e773]:
+            - generic [ref=e774]:
+              - generic [ref=e775]:
+                - heading "Read for 30 minutes" [level=4] [ref=e776]:
+                  - generic [ref=e777]: Read for 30 minutes
+                - generic [ref=e778]:
+                  - img [ref=e779]
+                  - generic [ref=e782]: 30 min
+              - generic [ref=e783]:
+                - img
+                - generic [ref=e784]: "8"
+            - generic [ref=e785]:
+              - paragraph [ref=e786]: Read a book of your choice
+              - generic [ref=e787]:
+                - generic [ref=e788]:
+                  - img [ref=e789]
+                  - generic [ref=e794]: "Assigned:"
+                - generic [ref=e796]: All Kids
+            - generic [ref=e800]:
+              - button "Edit" [ref=e801] [cursor=pointer]:
+                - img
+                - text: Edit
+              - button "Archive" [ref=e802] [cursor=pointer]:
+                - img
+                - text: Archive
+          - generic [ref=e803]:
+            - generic [ref=e804]:
+              - generic [ref=e805]:
+                - heading "Homework time" [level=4] [ref=e806]:
+                  - generic [ref=e807]: Homework time
+                - generic [ref=e808]:
+                  - img [ref=e809]
+                  - generic [ref=e812]: 45 min
+              - generic [ref=e813]:
+                - img
+                - generic [ref=e814]: "15"
+            - generic [ref=e815]:
+              - paragraph [ref=e816]: Complete all homework assignments
+              - generic [ref=e817]:
+                - generic [ref=e818]:
+                  - img [ref=e819]
+                  - generic [ref=e824]: "Assigned:"
+                - generic [ref=e826]: All Kids
+            - generic [ref=e830]:
+              - button "Edit" [ref=e831] [cursor=pointer]:
+                - img
+                - text: Edit
+              - button "Archive" [ref=e832] [cursor=pointer]:
+                - img
+                - text: Archive
+          - generic [ref=e833]:
+            - generic [ref=e834]:
+              - generic [ref=e835]:
+                - heading "Help with dishes" [level=4] [ref=e836]:
+                  - generic [ref=e837]: Help with dishes
+                - generic [ref=e838]:
+                  - img [ref=e839]
+                  - generic [ref=e842]: 15 min
+              - generic [ref=e843]:
+                - img
+                - generic [ref=e844]: "5"
+            - generic [ref=e845]:
+              - paragraph [ref=e846]: Clear table and load dishwasher
+              - generic [ref=e847]:
+                - generic [ref=e848]:
+                  - img [ref=e849]
+                  - generic [ref=e854]: "Assigned:"
+                - generic [ref=e856]: All Kids
+            - generic [ref=e860]:
+              - button "Edit" [ref=e861] [cursor=pointer]:
+                - img
+                - text: Edit
+              - button "Archive" [ref=e862] [cursor=pointer]:
+                - img
+                - text: Archive
+          - generic [ref=e863]:
+            - generic [ref=e864]:
+              - generic [ref=e865]:
+                - heading "Clean your room" [level=4] [ref=e866]:
+                  - generic [ref=e867]: Clean your room
+                - generic [ref=e868]:
+                  - img [ref=e869]
+                  - generic [ref=e872]: 20 min
+              - generic [ref=e873]:
+                - img
+                - generic [ref=e874]: "10"
+            - generic [ref=e875]:
+              - paragraph [ref=e876]: Make bed, organize toys, vacuum floor
+              - generic [ref=e877]:
+                - generic [ref=e878]:
+                  - img [ref=e879]
+                  - generic [ref=e884]: "Assigned:"
+                - generic [ref=e886]: All Kids
+            - generic [ref=e890]:
+              - button "Edit" [ref=e891] [cursor=pointer]:
+                - img
+                - text: Edit
+              - button "Archive" [ref=e892] [cursor=pointer]:
+                - img
+                - text: Archive
+  - region "Notifications alt+T"

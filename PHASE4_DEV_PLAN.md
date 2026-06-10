@@ -421,3 +421,17 @@ export async function revokeInvite(code: string): Promise<void> { /* updateDoc s
 - Cloud Functions for server-enforced token math + parent-driven kid password reset.
 - Password reset emails for parents (`sendPasswordResetEmail`) — trivial, add with first real user.
 - Rules unit tests (`@firebase/rules-unit-testing` + emulator) if rules grow further.
+
+## 8. Verification record (2026-06-10, live project `parent-kid-app2`)
+
+All tasks executed and verified against live Firestore. Results:
+
+**Passed (UI, via dev server + browser automation):** parent signup → ParentHome with starter content; session persistence across reloads; add kid + invite generation; kid claim via code (`username` login, synthesized email); completion submit (kid) → approve (parent) → balance +5, streak 1, ledger entry, status `approved`; redemption blocked on insufficient tokens; negotiation open (kid, 10) → no self-accept affordance → parent accept → reward cost 15→10, status restored `active`; growth log text-only entry with mood tag; photo uploader absent in live mode.
+
+**Passed (rules negative-tests, via Firestore REST with real ID tokens):** unauthenticated read denied; foreign account cannot read family docs, profiles, or others' `users/{uid}`; cannot forge a `users/{uid}` mapping into another family; kid cannot approve completions, edit others' profiles, edit own profile beyond `tokenBalance`, create invites, or list invites; claimed invite cannot be re-claimed. (12/12 denied/allowed as designed.)
+
+**Issues found & fixed during verification:**
+1. **Missing composite indexes** (activities `status+createdAt`; growthLog `kidId+status+date+createdAt` and `kidId+date+createdAt`) — app hung on the loading screen because DataContext never received the activities snapshot. Added to `firestore.indexes.json`, deployed. *Lesson: a missing index doesn't degrade — it bricks the screen.*
+2. **`setDoc` with `undefined` fields threw on live Firestore** (growth-log save failed silently from the user's perspective; the localStorage shim drops `undefined` via JSON serialization). Fixed globally with `initializeFirestore(app, { ignoreUndefinedProperties: true })` in `firebase.ts` — exactly the class of shim-vs-live divergence Phase 4 existed to surface.
+
+**Known cosmetic quirks (pre-existing / acceptable):** transient `permission-denied` listener errors during the signup commit window (listeners re-attach and recover); ParentHome tab resets to Activities when profile data changes (context remount churn); negotiation thread shows counterparty as "Unknown" before the other side replies; shadcn `forwardRef` dev warnings.

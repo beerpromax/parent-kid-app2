@@ -1,0 +1,182 @@
+- generic:
+  - generic:
+    - generic:
+      - banner:
+        - generic:
+          - generic:
+            - img
+            - heading [level=1]: Kid Zone
+          - generic:
+            - generic:
+              - img
+              - generic: 0 Days
+            - generic:
+              - generic:
+                - generic: 👧
+              - generic: Mia
+            - generic:
+              - img
+              - generic: "0"
+            - button:
+              - img
+              - generic: Sign Out
+      - main:
+        - generic:
+          - button:
+            - img
+            - text: My Activities
+          - button:
+            - img
+            - text: My Wallet
+          - button:
+            - img
+            - text: Rewards
+          - button:
+            - img
+            - generic: Negotiations
+          - button:
+            - img
+            - generic: My Journey
+        - generic:
+          - generic:
+            - generic:
+              - heading [level=2]: Available Activities
+              - paragraph: Complete tasks assigned to you to earn tokens!
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - heading [level=4]:
+                      - generic: Read for 30 minutes
+                    - generic:
+                      - img
+                      - generic: 30 min
+                  - generic:
+                    - img
+                    - generic: "8"
+                - generic:
+                  - paragraph: Read a book of your choice
+                  - generic:
+                    - generic:
+                      - img
+                      - generic: "Assigned:"
+                    - generic:
+                      - generic: All Kids
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - button:
+                          - img
+                          - text: Negotiate
+                        - generic:
+                          - button:
+                            - img
+                            - text: Mark Complete
+              - generic:
+                - generic:
+                  - generic:
+                    - heading [level=4]:
+                      - generic: Homework time
+                    - generic:
+                      - img
+                      - generic: 45 min
+                  - generic:
+                    - img
+                    - generic: "15"
+                - generic:
+                  - paragraph: Complete all homework assignments
+                  - generic:
+                    - generic:
+                      - img
+                      - generic: "Assigned:"
+                    - generic:
+                      - generic: All Kids
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - button:
+                          - img
+                          - text: Negotiate
+                        - generic:
+                          - button:
+                            - img
+                            - text: Mark Complete
+              - generic:
+                - generic:
+                  - generic:
+                    - heading [level=4]:
+                      - generic: Help with dishes
+                    - generic:
+                      - img
+                      - generic: 15 min
+                  - generic:
+                    - img
+                    - generic: "5"
+                - generic:
+                  - paragraph: Clear table and load dishwasher
+                  - generic:
+                    - generic:
+                      - img
+                      - generic: "Assigned:"
+                    - generic:
+                      - generic: All Kids
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - button:
+                          - img
+                          - text: Negotiate
+                        - generic:
+                          - button:
+                            - img
+                            - text: Mark Complete
+              - generic:
+                - generic:
+                  - generic:
+                    - heading [level=4]:
+                      - generic: Clean your room
+                    - generic:
+                      - img
+                      - generic: 20 min
+                  - generic:
+                    - img
+                    - generic: "10"
+                - generic:
+                  - paragraph: Make bed, organize toys, vacuum floor
+                  - generic:
+                    - generic:
+                      - img
+                      - generic: "Assigned:"
+                    - generic:
+                      - generic: All Kids
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - button:
+                          - img
+                          - text: Negotiate
+                        - generic:
+                          - button:
+                            - img
+                            - text: Mark Complete
+    - region "Notifications alt+T"
+  - dialog "Submit Completion" [ref=e663]:
+    - heading "Submit Completion" [level=2] [ref=e665]
+    - generic [ref=e666]:
+      - generic [ref=e667]:
+        - heading "Help with dishes" [level=3] [ref=e668]
+        - paragraph [ref=e669]: Clear table and load dishwasher
+      - generic [ref=e670]:
+        - generic [ref=e671]: Add a note (optional)
+        - textbox "Add a note (optional)" [active] [ref=e672]:
+          - /placeholder: e.g., I cleaned under the bed and put away all toys!
+    - generic [ref=e673]:
+      - button "Cancel" [ref=e674]
+      - button "Submit to Parent" [ref=e675]
+    - button "Close" [ref=e676]:
+      - img
+      - generic [ref=e677]: Close

@@ -1,5 +1,5 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
-import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
+import { initializeFirestore, connectFirestoreEmulator } from 'firebase/firestore';
 import { getStorage, connectStorageEmulator } from 'firebase/storage';
 import { getAuth, connectAuthEmulator } from 'firebase/auth';
 
@@ -14,7 +14,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
-const db = getFirestore(app);
+// ignoreUndefinedProperties: optional fields (durationMinutes, energyTag, …) are
+// passed as undefined throughout the repos; the localStorage shim drops them via
+// JSON.stringify, and live Firestore must do the same instead of throwing.
+const db = initializeFirestore(app, { ignoreUndefinedProperties: true });
 const storage = getStorage(app);
 const auth = getAuth(app);
 

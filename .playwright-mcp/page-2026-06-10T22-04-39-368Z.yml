@@ -1,0 +1,61 @@
+- generic [ref=e2]:
+  - generic [ref=e1465]:
+    - banner [ref=e1466]:
+      - generic [ref=e1467]:
+        - generic [ref=e1468]:
+          - img [ref=e1469]
+          - heading "Family Portal" [level=1] [ref=e1471]
+        - generic [ref=e1472]:
+          - generic [ref=e1473]:
+            - generic [ref=e1475]: 👑
+            - generic [ref=e1476]: Parent
+          - button "Sign Out" [ref=e1477] [cursor=pointer]:
+            - img
+            - generic [ref=e1478]: Sign Out
+    - main [ref=e1479]:
+      - generic [ref=e1480]:
+        - button "Activities" [ref=e1481] [cursor=pointer]:
+          - img [ref=e1482]
+          - text: Activities
+        - button "Approvals" [ref=e1485] [cursor=pointer]:
+          - img [ref=e1486]
+          - generic [ref=e1489]: Approvals
+        - button "Rewards" [ref=e1490] [cursor=pointer]:
+          - img [ref=e1491]
+          - generic [ref=e1495]: Rewards
+        - button "Fulfillments" [ref=e1496] [cursor=pointer]:
+          - img [ref=e1497]
+          - generic [ref=e1500]: Fulfillments
+        - button "Negotiations 1" [active] [ref=e1501] [cursor=pointer]:
+          - img [ref=e1502]
+          - generic [ref=e1504]: Negotiations
+          - generic [ref=e1505]: "1"
+        - button "Journey" [ref=e1506] [cursor=pointer]:
+          - img [ref=e1507]
+          - text: Journey
+        - button "Dashboard" [ref=e1509] [cursor=pointer]:
+          - img [ref=e1510]
+          - text: Dashboard
+        - button "Family" [ref=e1515] [cursor=pointer]:
+          - img [ref=e1516]
+          - text: Family
+      - generic [ref=e1647]:
+        - generic [ref=e1648]:
+          - heading "Negotiation Queue" [level=2] [ref=e1649]
+          - paragraph [ref=e1650]: Review rate requests and chat about activity values or reward costs
+        - generic [ref=e1651]:
+          - generic [ref=e1652]:
+            - heading "All Threads (1)" [level=3] [ref=e1653]
+            - generic [ref=e1659] [cursor=pointer]:
+              - heading "Ice Cream Treat" [level=4] [ref=e1661]
+              - generic [ref=e1662]:
+                - generic [ref=e1664]:
+                  - generic [ref=e1666]: 👧
+                  - generic [ref=e1667]: Mia
+                - generic [ref=e1669]: Open
+              - generic [ref=e1670]:
+                - generic [ref=e1671]: "Reward Cost: 10"
+                - generic [ref=e1672]: Jun 10, 06:03 PM
+              - generic [ref=e1673]: Awaiting your reply!
+          - generic [ref=e1675]: Select a negotiation thread from the list to view details and respond.
+  - region "Notifications alt+T"
