@@ -7,7 +7,8 @@ import { FulfillmentInbox } from './FulfillmentInbox';
 import { NegotiationInbox } from './NegotiationInbox';
 import { FamilyDashboard } from './FamilyDashboard';
 import { GrowthLog } from './GrowthLog';
-import { Sparkles, CheckSquare, Inbox, Users, Gift, ShoppingBag, MessageSquare, BookOpen } from 'lucide-react';
+import { Sparkles, CheckSquare, Inbox, Users, UserPlus, Gift, ShoppingBag, MessageSquare, BookOpen } from 'lucide-react';
+import { FamilyMembers } from './FamilyMembers';
 import { ProfileBadge } from '../../components/ProfileBadge';
 import { SessionButton } from '../../components/SessionButton';
 import { NotificationBadge } from '../../components/NotificationBadge';
@@ -16,7 +17,7 @@ import { useData } from '../../context/DataContext';
 export const ParentHome: React.FC = () => {
   const { currentProfile } = useProfile();
   const { completions, rewards, redemptions, negotiations } = useData();
-  const [activeTab, setActiveTab] = useState<'activities' | 'approvals' | 'rewards' | 'fulfillment' | 'negotiations' | 'dashboard' | 'journey'>('activities');
+  const [activeTab, setActiveTab] = useState<'activities' | 'approvals' | 'rewards' | 'fulfillment' | 'negotiations' | 'dashboard' | 'journey' | 'family'>('activities');
 
   if (!currentProfile) return null;
 
@@ -139,6 +140,18 @@ export const ParentHome: React.FC = () => {
             <Users className="w-4 h-4" />
             Dashboard
           </button>
+
+          <button
+            onClick={() => setActiveTab('family')}
+            className={`flex items-center gap-2 pb-4 px-4 font-semibold text-sm transition-all border-b-2 whitespace-nowrap cursor-pointer ${
+              activeTab === 'family'
+                ? 'border-primary text-primary font-bold'
+                : 'border-transparent text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            <UserPlus className="w-4 h-4" />
+            Family
+          </button>
         </div>
 
         {/* Tab Content */}
@@ -150,6 +163,7 @@ export const ParentHome: React.FC = () => {
           {activeTab === 'negotiations' && <NegotiationInbox />}
           {activeTab === 'journey' && <GrowthLog />}
           {activeTab === 'dashboard' && <FamilyDashboard />}
+          {activeTab === 'family' && <FamilyMembers />}
         </div>
       </main>
     </div>
