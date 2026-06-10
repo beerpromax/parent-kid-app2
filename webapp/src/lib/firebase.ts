@@ -1,6 +1,7 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
 import { getStorage, connectStorageEmulator } from 'firebase/storage';
+import { getAuth, connectAuthEmulator } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "mock-api-key",
@@ -15,6 +16,7 @@ const firebaseConfig = {
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 const db = getFirestore(app);
 const storage = getStorage(app);
+const auth = getAuth(app);
 
 // Use emulator if VITE_USE_FIREBASE_EMULATOR is 'true' or if we don't have api keys (standalone run)
 const useEmulator = import.meta.env.VITE_USE_FIREBASE_EMULATOR === 'true' || !import.meta.env.VITE_FIREBASE_API_KEY;
@@ -32,6 +34,12 @@ if (useEmulator) {
   } catch (err) {
     console.warn('Storage emulator already connected or failed:', err);
   }
+  try {
+    connectAuthEmulator(auth, 'http://localhost:9099');
+    console.log('Connected to local Auth emulator (localhost:9099)');
+  } catch (err) {
+    console.warn('Auth emulator already connected or failed:', err);
+  }
 }
 
-export { db, storage };
+export { db, storage, auth };

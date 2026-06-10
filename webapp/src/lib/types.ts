@@ -11,6 +11,7 @@ export interface Profile {
   currentStreak?: number;    // consecutive days with >=1 approved completion
   longestStreak?: number;
   lastStreakDate?: string;   // 'YYYY-MM-DD' in family-local tz
+  uid?: string;          // bound Firebase Auth account (Phase 4); absent until claimed
 }
 
 export type ActivityStatus = 'active' | 'archived' | 'negotiating';
@@ -138,6 +139,34 @@ export interface PhotoRef {
   height?: number;
   sizeBytes?: number;
   uploadedAt: number;
+}
+
+// ---- Phase 4: auth & invites ----
+
+// Maps a Firebase Auth user to exactly one profile in one family.
+// Created once at signup (parent) or invite claim (kid); immutable per rules.
+export interface UserMapping {
+  uid: string;
+  familyId: string;
+  profileId: string;
+  role: Role;
+  email: string;         // real (parent) or synthesized from username (kid)
+  inviteCode?: string;   // kid accounts only — rules validate the claim batch with it
+  createdAt: number;
+}
+
+export type InviteStatus = 'pending' | 'claimed' | 'revoked';
+
+export interface Invite {
+  id: string;            // == doc ID == the code
+  familyId: string;
+  profileId: string;     // kid profile this invite binds
+  kidName: string;       // display convenience for the claim screen
+  status: InviteStatus;
+  createdByUid: string;
+  createdAt: number;
+  expiresAt: number;     // ms epoch
+  claimedByUid?: string;
 }
 
 export type GrowthEntryStatus = 'active' | 'trashed';

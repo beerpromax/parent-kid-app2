@@ -58,6 +58,17 @@ export const growthLogCol = (familyId: string) =>
 export const growthEntryDoc = (familyId: string, entryId: string) =>
   doc(db, 'families', familyId, 'growthLog', entryId);
 
+// ---- Phase 4: auth & invites (top-level collections) ----
+
+export const userDoc = (uid: string) =>
+  doc(db, 'users', uid);
+
+export const invitesCol = () =>
+  collection(db, 'invites');
+
+export const inviteDoc = (code: string) =>
+  doc(db, 'invites', code);
+
 export const photoStoragePath = (familyId: string, kidId: string, entryId: string, photoId: string, variant: 'full' | 'thumb') => {
   const ext = variant === 'thumb' ? '_thumb.jpg' : '.jpg';
   return `families/${familyId}/growth/${kidId}/${entryId}/${photoId}${ext}`;
