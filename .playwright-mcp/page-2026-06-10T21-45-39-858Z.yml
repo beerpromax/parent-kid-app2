@@ -1,0 +1,36 @@
+- generic [ref=e2]:
+  - generic [ref=e8]:
+    - generic [ref=e9]:
+      - img [ref=e12]
+      - heading "Family Rewards" [level=4] [ref=e14]
+      - paragraph [ref=e15]: Earn tokens together, grow together
+    - generic [ref=e17]:
+      - tablist [ref=e18]:
+        - tab "Log in" [ref=e19]:
+          - img
+          - text: Log in
+        - tab "New family" [active] [selected] [ref=e20]:
+          - img
+          - text: New family
+        - tab "Invite code" [ref=e21]:
+          - img
+          - text: Invite code
+      - tabpanel "New family" [ref=e31]:
+        - generic [ref=e32]:
+          - generic [ref=e33]:
+            - generic [ref=e34]: Family name
+            - textbox "Family name" [ref=e35]:
+              - /placeholder: The Smiths
+          - generic [ref=e36]:
+            - generic [ref=e37]: Your name
+            - textbox "Your name" [ref=e38]:
+              - /placeholder: Mom / Dad
+          - generic [ref=e39]:
+            - generic [ref=e40]: Email
+            - textbox "Email" [ref=e41]
+          - generic [ref=e42]:
+            - generic [ref=e43]: Password
+            - textbox "Password" [ref=e44]
+          - button "Create family" [ref=e45]
+          - paragraph [ref=e46]: You’ll be the parent account. Kids join later with invite codes.
+  - region "Notifications alt+T"
