@@ -8,8 +8,8 @@ import { MyNegotiations } from './MyNegotiations';
 import { MyJourney } from './MyJourney';
 import { NotificationBadge } from '../../components/NotificationBadge';
 import { StreakBadge } from '../../components/StreakBadge';
-import { Sparkles, LogOut, CheckSquare, Wallet, Gift, MessageSquare, BookOpen } from 'lucide-react';
-import { Button } from '../../components/ui/button';
+import { Sparkles, CheckSquare, Wallet, Gift, MessageSquare, BookOpen } from 'lucide-react';
+import { SessionButton } from '../../components/SessionButton';
 import { ProfileBadge } from '../../components/ProfileBadge';
 import { TokenChip } from '../../components/TokenChip';
 import confetti from 'canvas-confetti';
@@ -17,7 +17,7 @@ import { toast } from 'sonner';
 import { Completion } from '../../../lib/types';
 
 export const KidHome: React.FC = () => {
-  const { currentProfile, clearProfile } = useProfile();
+  const { currentProfile } = useProfile();
   const { completions, negotiations } = useData();
   const [activeTab, setActiveTab] = useState<'activities' | 'wallet' | 'wishlist' | 'negotiations' | 'journey'>('activities');
   const prevCompletionsRef = useRef<Completion[]>([]);
@@ -73,15 +73,7 @@ export const KidHome: React.FC = () => {
                 <TokenChip amount={currentProfile.tokenBalance} size="sm" />
               </>
             )}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={clearProfile}
-              className="text-muted-foreground hover:text-foreground flex items-center gap-1.5 cursor-pointer"
-            >
-              <LogOut className="w-4 h-4" />
-              <span className="hidden sm:inline">Switch Profile</span>
-            </Button>
+            <SessionButton />
           </div>
         </div>
       </header>

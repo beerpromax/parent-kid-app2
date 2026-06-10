@@ -7,14 +7,14 @@ import { FulfillmentInbox } from './FulfillmentInbox';
 import { NegotiationInbox } from './NegotiationInbox';
 import { FamilyDashboard } from './FamilyDashboard';
 import { GrowthLog } from './GrowthLog';
-import { Sparkles, LogOut, CheckSquare, Inbox, Users, Gift, ShoppingBag, MessageSquare, BookOpen } from 'lucide-react';
-import { Button } from '../../components/ui/button';
+import { Sparkles, CheckSquare, Inbox, Users, Gift, ShoppingBag, MessageSquare, BookOpen } from 'lucide-react';
 import { ProfileBadge } from '../../components/ProfileBadge';
+import { SessionButton } from '../../components/SessionButton';
 import { NotificationBadge } from '../../components/NotificationBadge';
 import { useData } from '../../context/DataContext';
 
 export const ParentHome: React.FC = () => {
-  const { currentProfile, clearProfile } = useProfile();
+  const { currentProfile } = useProfile();
   const { completions, rewards, redemptions, negotiations } = useData();
   const [activeTab, setActiveTab] = useState<'activities' | 'approvals' | 'rewards' | 'fulfillment' | 'negotiations' | 'dashboard' | 'journey'>('activities');
 
@@ -43,15 +43,7 @@ export const ParentHome: React.FC = () => {
             {currentProfile && (
               <ProfileBadge profile={currentProfile} avatarSize="sm" />
             )}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={clearProfile}
-              className="text-muted-foreground hover:text-foreground flex items-center gap-1.5 cursor-pointer"
-            >
-              <LogOut className="w-4 h-4" />
-              <span className="hidden sm:inline">Switch Profile</span>
-            </Button>
+            <SessionButton />
           </div>
         </div>
       </header>
