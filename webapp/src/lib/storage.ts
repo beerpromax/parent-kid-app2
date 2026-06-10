@@ -3,6 +3,7 @@ import { storage } from './firebase';
 import { photoStoragePath } from './paths';
 import { PhotoRef } from './types';
 import { resizeAndCompress, makeThumbnail } from './images';
+import { photosEnabled } from './config';
 
 const useLocalStorage = import.meta.env.VITE_USE_LOCAL_STORAGE === 'true';
 
@@ -111,6 +112,12 @@ export async function uploadEntryPhoto(
   file: File,
   onProgress?: (pct: number) => void
 ): Promise<PhotoRef> {
+  if (!photosEnabled) {
+    // Firebase Storage is deferred until the project is on the Blaze plan;
+    // the uploader UI is hidden, this guard is defense in depth.
+    throw new Error('PHOTOS_DISABLED');
+  }
+
   // 1. Validate size and type
   const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/heic'];
   if (!allowedTypes.includes(file.type.toLowerCase())) {

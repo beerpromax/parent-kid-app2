@@ -13,6 +13,7 @@ import { GrowthLogEntry, PhotoRef, MoodTag, EnergyTag } from '../../lib/types';
 import { useProfile } from '../context/ProfileContext';
 import { createEntry, updateEntry } from '../../lib/repos/growthlog.repo';
 import { deleteEntryPhoto } from '../../lib/storage';
+import { photosEnabled } from '../../lib/config';
 import { familyLocalDate } from '../../lib/datetime';
 import { toast } from 'sonner';
 
@@ -242,19 +243,24 @@ export const EntryComposerDialog: React.FC<EntryComposerDialogProps> = ({
               onEnergyChange={setEnergyTag}
             />
 
-            {/* Photo upload and attachments gallery */}
+            {/* Photo upload and attachments gallery (uploader hidden while Storage is deferred) */}
+            {(photosEnabled || photos.length > 0) && (
             <div className="space-y-3 pt-2 border-t border-border/60">
-              <Label className="text-xs font-bold text-foreground block">
-                Attach Photos <span className="text-[10px] text-muted-foreground font-normal">(Maximum 8 photos)</span>
-              </Label>
-              
-              <PhotoUploader
-                entryId={entryId}
-                kidId={kidId}
-                currentPhotosCount={photos.length}
-                onPhotoUploadComplete={handlePhotoUploadComplete}
-                disabled={photos.length >= 8}
-              />
+              {photosEnabled && (
+                <>
+                  <Label className="text-xs font-bold text-foreground block">
+                    Attach Photos <span className="text-[10px] text-muted-foreground font-normal">(Maximum 8 photos)</span>
+                  </Label>
+
+                  <PhotoUploader
+                    entryId={entryId}
+                    kidId={kidId}
+                    currentPhotosCount={photos.length}
+                    onPhotoUploadComplete={handlePhotoUploadComplete}
+                    disabled={photos.length >= 8}
+                  />
+                </>
+              )}
 
               {photos.length > 0 && (
                 <div className="space-y-2 mt-2">
@@ -272,6 +278,7 @@ export const EntryComposerDialog: React.FC<EntryComposerDialogProps> = ({
                 </div>
               )}
             </div>
+            )}
 
           </div>
 
