@@ -1,9 +1,167 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Locked by default — replaced by family-scoped rules in Phase 4 (auth) work.
-    match /{document=**} {
-      allow read, write: if false;
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    // Membership/role derive from the caller's users/{uid} doc (pre-batch state).
+    function userData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+    // Post-batch state — only for the signup/claim batches where users/{uid}
+    // is created in the same commit.
+    function userDataAfter() {
+      return getAfter(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+    function isMember(familyId) {
+      return isSignedIn()
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && userData().familyId == familyId;
+    }
+    function isParent(familyId) {
+      return isMember(familyId) && userData().role == 'parent';
+    }
+
+    match /users/{uid} {
+      allow get: if isSignedIn() && request.auth.uid == uid;
+      allow list: if false;
+      allow create: if isSignedIn()
+        && request.auth.uid == uid
+        && request.resource.data.uid == uid
+        && (
+          // Parent signup: the family doc created in this batch names this uid as owner.
+          (request.resource.data.role == 'parent'
+            && getAfter(/databases/$(database)/documents/families/$(request.resource.data.familyId)).data.ownerUid == uid)
+          ||
+          // Kid claim: the invite (as updated in this batch) is claimed by this uid
+          // and points at exactly the family/profile being claimed.
+          (request.resource.data.role == 'kid'
+            && request.resource.data.inviteCode is string
+            && getAfter(/databases/$(database)/documents/invites/$(request.resource.data.inviteCode)).data.claimedByUid == uid
+            && getAfter(/databases/$(database)/documents/invites/$(request.resource.data.inviteCode)).data.familyId == request.resource.data.familyId
+            && getAfter(/databases/$(database)/documents/invites/$(request.resource.data.inviteCode)).data.profileId == request.resource.data.profileId)
+        );
+      allow update, delete: if false;
+    }
+
+    match /invites/{code} {
+      // The code itself is the secret; any signed-in user may fetch one by ID.
+      allow get: if isSignedIn();
+      allow list: if isSignedIn() && isParent(resource.data.familyId);
+      allow create: if isParent(request.resource.data.familyId)
+        && request.resource.data.status == 'pending'
+        && request.resource.data.createdByUid == request.auth.uid;
+      allow update: if
+        // revoke, by a parent of the family
+        (isParent(resource.data.familyId)
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status'])
+          && request.resource.data.status == 'revoked')
+        ||
+        // claim, by the signing-up kid (same batch as users/{uid} create)
+        (isSignedIn()
+          && resource.data.status == 'pending'
+          && resource.data.expiresAt > request.time.toMillis()
+          && request.resource.data.status == 'claimed'
+          && request.resource.data.claimedByUid == request.auth.uid
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'claimedByUid']));
+      allow delete: if isParent(resource.data.familyId);
+    }
+
+    match /families/{familyId} {
+      allow get: if isMember(familyId);
+      allow list: if false;
+      // Parent signup batch: users/{uid} lands in the same commit.
+      allow create: if isSignedIn()
+        && request.resource.data.ownerUid == request.auth.uid
+        && userDataAfter().familyId == familyId
+        && userDataAfter().role == 'parent';
+      allow update: if isParent(familyId);
+      allow delete: if false;
+
+      match /profiles/{profileId} {
+        allow read: if isMember(familyId);
+        // userDataAfter covers both the signup batch (doc pending in commit)
+        // and steady-state parent adds (doc already exists).
+        allow create: if isSignedIn()
+          && userDataAfter().familyId == familyId
+          && userDataAfter().role == 'parent';
+        allow update: if
+          isParent(familyId)
+          ||
+          // kid redeeming: may only touch own bound profile's balance
+          (isMember(familyId)
+            && resource.data.uid == request.auth.uid
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['tokenBalance']))
+          ||
+          // kid claim batch: bind uid to the invited (unbound) profile
+          (isSignedIn()
+            && !('uid' in resource.data)
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['uid'])
+            && request.resource.data.uid == request.auth.uid
+            && userDataAfter().familyId == familyId
+            && userDataAfter().profileId == profileId);
+        allow delete: if false;
+      }
+
+      match /activities/{activityId} {
+        allow read: if isMember(familyId);
+        allow create: if isParent(familyId);
+        // members update: negotiation acceptance applies rate changes from either side
+        allow update: if isMember(familyId);
+        allow delete: if false;
+      }
+
+      match /completions/{completionId} {
+        allow read: if isMember(familyId);
+        allow create: if isMember(familyId);
+        // approve/reject are parent-only transitions
+        allow update: if isParent(familyId);
+        allow delete: if false;
+      }
+
+      match /ledger/{entryId} {
+        allow read: if isMember(familyId);
+        allow create: if isMember(familyId);
+        allow update, delete: if false;
+      }
+
+      match /rewards/{rewardId} {
+        allow read: if isMember(familyId);
+        // kids propose wishlist rewards; parents create directly
+        allow create: if isMember(familyId);
+        allow update: if isMember(familyId);
+        allow delete: if false;
+      }
+
+      match /redemptions/{redemptionId} {
+        allow read: if isMember(familyId);
+        allow create: if isMember(familyId);
+        // fulfill/refund are parent-only transitions
+        allow update: if isParent(familyId);
+        allow delete: if false;
+      }
+
+      match /negotiations/{threadId} {
+        allow read: if isMember(familyId);
+        allow create: if isMember(familyId);
+        allow update: if isMember(familyId);
+        allow delete: if false;
+
+        match /offers/{offerId} {
+          allow read: if isMember(familyId);
+          allow create: if isMember(familyId);
+          allow update: if isMember(familyId);
+          allow delete: if false;
+        }
+      }
+
+      match /growthLog/{entryId} {
+        allow read: if isMember(familyId);
+        allow create: if isMember(familyId);
+        allow update: if isMember(familyId);
+        allow delete: if false;
+      }
     }
   }
 }
